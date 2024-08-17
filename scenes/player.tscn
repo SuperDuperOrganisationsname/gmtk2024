@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://6j8yqwaj8xar"]
+[gd_scene load_steps=63 format=3 uid="uid://6j8yqwaj8xar"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cic6y"]
 [ext_resource type="Texture2D" uid="uid://c3ng8ye0qlgha" path="res://assets/sprites/main_charakter.png" id="2_dfnnq"]
@@ -53,19 +53,6 @@ animation = &"idle_right"
 blend_point_0/node = SubResource("AnimationNodeAnimation_vg6yg")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_10tv2")
-blend_point_1/pos = 1.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wjxqk"]
-animation = &"jump_land_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oqyl4"]
-animation = &"jump_land_right"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_tnsu3"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_wjxqk")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_oqyl4")
 blend_point_1/pos = 1.0
 blend_mode = 1
 
@@ -150,15 +137,6 @@ advance_condition = &"jump_peak"
 advance_mode = 2
 advance_condition = &"fall_down"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1m0t"]
-advance_mode = 2
-advance_condition = &"jump_land"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w1l5b"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"idle"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qol8v"]
 advance_mode = 2
 advance_condition = &"jump"
@@ -179,30 +157,32 @@ advance_condition = &"fall_down"
 advance_mode = 2
 advance_condition = &"fall_down"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n75rv"]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yejev"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b0dhl"]
 advance_mode = 2
 advance_condition = &"run"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ti4b7"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace1D_ot4ue")
-states/Attack/position = Vector2(489, -47)
+states/Attack/position = Vector2(538, -64)
+states/End/position = Vector2(1103, 88)
 states/FallDown/node = SubResource("AnimationNodeBlendSpace1D_dbpyl")
 states/FallDown/position = Vector2(900, 243)
 states/FallUp/node = SubResource("AnimationNodeBlendSpace1D_hccq2")
 states/FallUp/position = Vector2(455, 253)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_1r4hm")
 states/Idle/position = Vector2(359, 100)
-states/JumpLand/node = SubResource("AnimationNodeBlendSpace1D_tnsu3")
-states/JumpLand/position = Vector2(1067, 189)
 states/JumpPeak/node = SubResource("AnimationNodeBlendSpace1D_0whho")
 states/JumpPeak/position = Vector2(608, 253)
 states/JumpSquad/node = SubResource("AnimationNodeBlendSpace1D_mnmva")
 states/JumpSquad/position = Vector2(289, 253)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_h0p3o")
-states/Run/position = Vector2(649, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_v3umx"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_a2w73"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_m8fcr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pd7o1"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_x0mu0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_ubtsc"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_hy3j0"), "JumpSquad", "FallUp", SubResource("AnimationNodeStateMachineTransition_kh6v3"), "FallUp", "JumpPeak", SubResource("AnimationNodeStateMachineTransition_ttbgg"), "JumpPeak", "FallDown", SubResource("AnimationNodeStateMachineTransition_ecbwc"), "FallDown", "JumpLand", SubResource("AnimationNodeStateMachineTransition_i1m0t"), "JumpLand", "Idle", SubResource("AnimationNodeStateMachineTransition_w1l5b"), "Idle", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_qol8v"), "Run", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_6qfy5"), "Idle", "FallDown", SubResource("AnimationNodeStateMachineTransition_p2hwd"), "Run", "FallDown", SubResource("AnimationNodeStateMachineTransition_it1o5"), "Attack", "FallDown", SubResource("AnimationNodeStateMachineTransition_wcgtq"), "JumpLand", "Run", SubResource("AnimationNodeStateMachineTransition_n75rv")]
-graph_offset = Vector2(89, 66.8033)
+states/Run/position = Vector2(894, -18)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_v3umx"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_a2w73"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_m8fcr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pd7o1"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_x0mu0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_ubtsc"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_hy3j0"), "JumpSquad", "FallUp", SubResource("AnimationNodeStateMachineTransition_kh6v3"), "FallUp", "JumpPeak", SubResource("AnimationNodeStateMachineTransition_ttbgg"), "JumpPeak", "FallDown", SubResource("AnimationNodeStateMachineTransition_ecbwc"), "Idle", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_qol8v"), "Run", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_6qfy5"), "Idle", "FallDown", SubResource("AnimationNodeStateMachineTransition_p2hwd"), "Run", "FallDown", SubResource("AnimationNodeStateMachineTransition_it1o5"), "Attack", "FallDown", SubResource("AnimationNodeStateMachineTransition_wcgtq"), "FallDown", "Idle", SubResource("AnimationNodeStateMachineTransition_yejev"), "FallDown", "Run", SubResource("AnimationNodeStateMachineTransition_b0dhl")]
+graph_offset = Vector2(86, 27.8033)
 
 [sub_resource type="Animation" id="Animation_qo5fo"]
 length = 0.001
@@ -455,6 +435,98 @@ tracks/5/keys = {
 "values": [true, false, true]
 }
 
+[sub_resource type="Animation" id="Animation_oluuj"]
+resource_name = "fall_down_left"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [44]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rqufp"]
+resource_name = "fall_down_right"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [44]
+}
+
+[sub_resource type="Animation" id="Animation_a1xex"]
+resource_name = "fall_up_left"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [42]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_vqu7l"]
+resource_name = "fall_up_right"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [42]
+}
+
 [sub_resource type="Animation" id="Animation_117mt"]
 resource_name = "idle_left"
 loop_mode = 1
@@ -497,6 +569,142 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 0, 8, 9, 8]
+}
+
+[sub_resource type="Animation" id="Animation_ln766"]
+resource_name = "jump_land_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [45, 46, 47]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ovg5s"]
+resource_name = "jump_land_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [45, 46, 47]
+}
+
+[sub_resource type="Animation" id="Animation_mf3cp"]
+resource_name = "jump_peak_left"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [43]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rocmp"]
+resource_name = "jump_peak_right"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [43]
+}
+
+[sub_resource type="Animation" id="Animation_qjxm5"]
+resource_name = "jump_squat_left"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [40, 41]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xb5x6"]
+resource_name = "jump_squat_right"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [40, 41]
 }
 
 [sub_resource type="Animation" id="Animation_df1l5"]
@@ -545,234 +753,6 @@ tracks/0/keys = {
 "values": [24, 25, 26, 27, 28, 29, 30, 31]
 }
 
-[sub_resource type="Animation" id="Animation_xb5x6"]
-resource_name = "jump_squat_right"
-length = 0.2
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [40, 41]
-}
-
-[sub_resource type="Animation" id="Animation_rocmp"]
-resource_name = "jump_peak_right"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [43]
-}
-
-[sub_resource type="Animation" id="Animation_ovg5s"]
-resource_name = "jump_land_right"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [45, 46, 47]
-}
-
-[sub_resource type="Animation" id="Animation_rqufp"]
-resource_name = "fall_down_right"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [44]
-}
-
-[sub_resource type="Animation" id="Animation_vqu7l"]
-resource_name = "fall_up_right"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [42]
-}
-
-[sub_resource type="Animation" id="Animation_oluuj"]
-resource_name = "fall_down_left"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [44]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_a1xex"]
-resource_name = "fall_up_left"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [42]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_ln766"]
-resource_name = "jump_land_left"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [45, 46, 47]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_mf3cp"]
-resource_name = "jump_peak_left"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [43]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_qjxm5"]
-resource_name = "jump_squat_left"
-length = 0.2
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [40, 41]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d8882"]
 _data = {
 "RESET": SubResource("Animation_qo5fo"),
@@ -814,14 +794,12 @@ parameters/conditions/fall_down = false
 parameters/conditions/fall_up = false
 parameters/conditions/idle = false
 parameters/conditions/jump = false
-parameters/conditions/jump_land = false
 parameters/conditions/jump_peak = false
 parameters/conditions/run = false
 parameters/Attack/blend_position = 0
 parameters/FallDown/blend_position = 0
 parameters/FallUp/blend_position = 0
 parameters/Idle/blend_position = -0.996667
-parameters/JumpLand/blend_position = 0
 parameters/JumpPeak/blend_position = 0
 parameters/JumpSquad/blend_position = -0.99
 parameters/Run/blend_position = 0

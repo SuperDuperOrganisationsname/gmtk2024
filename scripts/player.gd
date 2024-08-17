@@ -100,7 +100,6 @@ func update_animation():
 		animation_tree["parameters/FallUp/blend_position"] = direction
 		animation_tree["parameters/JumpPeak/blend_position"] = direction
 		animation_tree["parameters/FallDown/blend_position"] = direction
-		animation_tree["parameters/JumpLand/blend_position"] = direction
 	
 	# jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -109,6 +108,8 @@ func update_animation():
 		animation_tree["parameters/conditions/jump"] = false
 		
 	if not is_on_floor():
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/run"] = false
 		if abs(velocity.y) < 20:
 			animation_tree["parameters/conditions/jump_peak"] = true
 		else:
@@ -124,23 +125,16 @@ func update_animation():
 		animation_tree["parameters/conditions/fall_down"] = false
 		animation_tree["parameters/conditions/fall_up"] = false
 		animation_tree["parameters/conditions/jump_peak"] = false
+
 		
 	# Landing
 	if is_on_floor() and last_frame_in_air:
 		animation_tree["parameters/conditions/fall_down"] = false
 		animation_tree["parameters/conditions/fall_up"] = false
 		animation_tree["parameters/conditions/jump_peak"] = false
-		animation_tree["parameters/conditions/jump_land"] = true
-	# animation_tree["parameters/conditions/jump_land"] = false
-		
-func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	animation_tree["parameters/conditions/fall_down"] = false
-	animation_tree["parameters/conditions/fall_up"] = false
-	animation_tree["parameters/conditions/jump_peak"] = false
-	animation_tree["parameters/conditions/jump_land"] = false
-	if velocity.x == 0:
-		animation_tree["parameters/conditions/idle"] = true
-		animation_tree["parameters/conditions/run"] = false
-	else:
-		animation_tree["parameters/conditions/run"] = true
-		animation_tree["parameters/conditions/idle"] = false
+		if velocity.x == 0:
+			animation_tree["parameters/conditions/idle"] = true
+			animation_tree["parameters/conditions/run"] = false
+		else:
+			animation_tree["parameters/conditions/run"] = true
+			animation_tree["parameters/conditions/idle"] = false
