@@ -8,6 +8,7 @@ const STRETCH_SPEED: float = 3.0
 @export var player_pos: Node2D
 
 var tileset: TileSet
+var source: int
 
 # Tilemap left of the stretching
 @onready var left_tilemap: TileMapLayer = $LeftTileMap
@@ -48,6 +49,7 @@ var undo_timer: float = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tileset = main_tilemap.get_tile_set()
+	source = tileset.get_source_id(0)
 	tile_coords = main_tilemap.get_used_cells()
 	tiles_atlas.assign(tile_coords.map(get_atlas_coord))
 	
@@ -146,11 +148,11 @@ func draw_tilemaps():
 		var atlas = tiles_atlas[i]
 		
 		if coord.x < int_beg:
-			left_tilemap.set_cell(coord, 1, atlas)
+			left_tilemap.set_cell(coord, source, atlas)
 		elif coord.x > int_end:
-			right_tilemap.set_cell(coord, 1, atlas)
+			right_tilemap.set_cell(coord, source, atlas)
 		else:
-			middle_tilemap.set_cell(coord, 1, atlas)
+			middle_tilemap.set_cell(coord, source, atlas)
 		
 
 func set_offsets_and_scale():
