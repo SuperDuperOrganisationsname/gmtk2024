@@ -14,6 +14,9 @@ var last_direction = 1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var indicator_rotation = 0
 
+# checks if the last frame was in the air, to detect when you land
+var last_frame_in_air = false
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var throw_indicator: StaticBody2D = $ThrowIndicator
@@ -24,12 +27,15 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	update_animation()
+	last_frame_in_air = not is_on_floor()
 
 func _physics_process(delta):
 	var throw_pressed = Input.is_action_pressed("throw")
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	else:
+		velocity.y = 0
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -73,12 +79,13 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func update_animation():
-	if velocity == Vector2.ZERO:
-		animation_tree["parameters/conditions/idle"] = true
-		animation_tree["parameters/conditions/run"] = false
-	else:
-		animation_tree["parameters/conditions/idle"] = false
-		animation_tree["parameters/conditions/run"] = true
+	if is_on_floor():
+		if velocity == Vector2.ZERO:
+			animation_tree["parameters/conditions/idle"] = true
+			animation_tree["parameters/conditions/run"] = false
+		else:
+			animation_tree["parameters/conditions/idle"] = false
+			animation_tree["parameters/conditions/run"] = true
 	
 	if Input.is_action_just_pressed("attack"):
 		animation_tree["parameters/conditions/attack"] = true
@@ -89,4 +96,51 @@ func update_animation():
 		animation_tree["parameters/Attack/blend_position"] = direction
 		animation_tree["parameters/Run/blend_position"] = direction
 		animation_tree["parameters/Idle/blend_position"] = direction
+		animation_tree["parameters/JumpSquad/blend_position"] = direction
+		animation_tree["parameters/FallUp/blend_position"] = direction
+		animation_tree["parameters/JumpPeak/blend_position"] = direction
+		animation_tree["parameters/FallDown/blend_position"] = direction
+		animation_tree["parameters/JumpLand/blend_position"] = direction
 	
+	# jumping
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		animation_tree["parameters/conditions/jump"] = true
+	else:
+		animation_tree["parameters/conditions/jump"] = false
+		
+	if not is_on_floor():
+		if abs(velocity.y) < 20:
+			animation_tree["parameters/conditions/jump_peak"] = true
+		else:
+			animation_tree["parameters/conditions/jump_peak"] = false
+			# y = down
+			if velocity.y > 0:
+				animation_tree["parameters/conditions/fall_up"] = false
+				animation_tree["parameters/conditions/fall_down"] = true
+			if velocity.y < 0:
+				animation_tree["parameters/conditions/fall_up"] = true
+				animation_tree["parameters/conditions/fall_down"] = false
+	else:
+		animation_tree["parameters/conditions/fall_down"] = false
+		animation_tree["parameters/conditions/fall_up"] = false
+		animation_tree["parameters/conditions/jump_peak"] = false
+		
+	# Landing
+	if is_on_floor() and last_frame_in_air:
+		animation_tree["parameters/conditions/fall_down"] = false
+		animation_tree["parameters/conditions/fall_up"] = false
+		animation_tree["parameters/conditions/jump_peak"] = false
+		animation_tree["parameters/conditions/jump_land"] = true
+	# animation_tree["parameters/conditions/jump_land"] = false
+		
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	animation_tree["parameters/conditions/fall_down"] = false
+	animation_tree["parameters/conditions/fall_up"] = false
+	animation_tree["parameters/conditions/jump_peak"] = false
+	animation_tree["parameters/conditions/jump_land"] = false
+	if velocity.x == 0:
+		animation_tree["parameters/conditions/idle"] = true
+		animation_tree["parameters/conditions/run"] = false
+	else:
+		animation_tree["parameters/conditions/run"] = true
+		animation_tree["parameters/conditions/idle"] = false
