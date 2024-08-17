@@ -8,7 +8,6 @@ var direction = -1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready() -> void:
