@@ -23,7 +23,14 @@ class Stretch:
 	var pos: int
 	var scale: float
 
+enum StretchType {
+	LEFT,
+	MIDDLE,
+	RIGHT,
+}
+
 var x_stretch: Stretch
+var stretch_type: StretchType = StretchType.MIDDLE
 
 var x_scale: float = 0
 var increase_scale: bool = false
@@ -94,5 +101,16 @@ func draw_tilemaps():
 
 func set_offsets_and_scale():
 	middle_tilemap.scale.x = x_stretch.scale
-	middle_tilemap.position.x = TILE_SIZE * (1 - x_stretch.scale) * (x_stretch.pos - x_stretch.size)
-	right_tilemap.position.x = TILE_SIZE * (2 * x_stretch.size + 1) * (x_stretch.scale - 1)
+	match stretch_type:
+		StretchType.LEFT:
+			left_tilemap.position.x = 0
+			middle_tilemap.position.x = TILE_SIZE * (1 - x_stretch.scale) * (x_stretch.pos - x_stretch.size)
+			right_tilemap.position.x = TILE_SIZE * (2 * x_stretch.size + 1) * (x_stretch.scale - 1)
+		StretchType.RIGHT:
+			left_tilemap.position.x = TILE_SIZE * (2 * x_stretch.size + 1) * (1 - x_stretch.scale)
+			middle_tilemap.position.x = TILE_SIZE * (1 - x_stretch.scale) * (x_stretch.pos + x_stretch.size + 1)
+			right_tilemap.position.x = 0
+		StretchType.MIDDLE:
+			left_tilemap.position.x = TILE_SIZE * (x_stretch.size + 0.5) * (1 - x_stretch.scale)
+			middle_tilemap.position.x = TILE_SIZE * (1 - x_stretch.scale) * (x_stretch.pos + 0.5)
+			right_tilemap.position.x = TILE_SIZE * (x_stretch.size + 0.5) * (x_stretch.scale - 1)
