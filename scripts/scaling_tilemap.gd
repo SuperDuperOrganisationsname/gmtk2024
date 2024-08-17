@@ -33,7 +33,7 @@ const TILE_SIZE: int = 16
 const SCALE_SPEED: float = 3.0
 
 # Upper bound for stretching
-const MAX_SCALE: float = 2.5
+const MAX_SCALE: float = 5
 
 # If stretch is near 1, round it to 1
 const ROUND_THRESHOLD: float = 0.04
@@ -131,6 +131,12 @@ func _ready():
 	last_state.tilemap = 1
 	last_state.offsets = Vector3(0, 0, 0)
 	last_state.scale = scaling.scale
+	
+	# Instantiate Interval-Indicators
+	$LeftLine.add_point(Vector2(100, -10000))
+	$LeftLine.add_point(Vector2(100, 10000))
+	$RightLine.add_point(Vector2(100, -10000))
+	$RightLine.add_point(Vector2(100, 10000))
 
 # Input-Handling
 func _input(_event):
@@ -166,6 +172,7 @@ func _process(delta):
 	# Redraw map
 	reset_tilemaps()
 	draw_tilemaps()
+	update_indicators()
 	
 	# Update player position
 	force_player_pos_update()
@@ -186,6 +193,8 @@ func update_item_position():
 		var player_pos_int = player.position as Vector2i
 		scale_center.position.x = (player_pos_int.x / TILE_SIZE) as int * TILE_SIZE + TILE_SIZE * 0.5
 		scale_center.position.y = player_pos_int.y
+		if player.position.x < 0:
+			scale_center.position.x -= 2 * TILE_SIZE
 	else:
 		scale_center.visible = true
 	var pos = scale_center.position.x / 16 as int
@@ -270,6 +279,18 @@ func draw_tilemaps():
 		else:
 			middle_tilemap.set_cell(coord, source, atlas)
 		
+
+func update_indicators():
+	var int_beg = scaling.pos - scaling.size
+	var int_end = scaling.pos + scaling.size + 1
+	
+	var left_pos = left_tilemap.position.x + TILE_SIZE * int_beg
+	var right_pos = right_tilemap.position.x + TILE_SIZE * int_end
+	
+	$LeftLine.set_point_position(0, Vector2(left_pos, -10000))
+	$LeftLine.set_point_position(1, Vector2(left_pos, 10000))
+	$RightLine.set_point_position(0, Vector2(right_pos, -10000))
+	$RightLine.set_point_position(1, Vector2(right_pos, 10000))
 
 
 # ---------- Update Player ---------- #
