@@ -10,3 +10,13 @@ script = ExtResource("1_5trgv")
 [node name="RightTileMap" type="TileMapLayer" parent="."]
 
 [node name="MiddleTileMap" type="TileMapLayer" parent="."]
+
+[node name="LeftLine" type="Line2D" parent="."]
+z_index = 6
+width = 0.5
+default_color = Color(0.835294, 0.235294, 0.415686, 1)
+
+[node name="RightLine" type="Line2D" parent="."]
+z_index = 6
+width = 0.5
+default_color = Color(0.835294, 0.235294, 0.415686, 1)
