@@ -112,7 +112,18 @@ func update_item_position():
 		stretch_center.position.y = player_pos_int.y
 	else:
 		stretch_center.visible = true
-	x_stretch.pos = stretch_center.position.x / 16 as int
+	var pos = stretch_center.position.x / 16 as int
+	
+	match stretch_type:
+		StretchType.LEFT:
+			x_stretch.pos = pos + x_stretch.size
+		StretchType.RIGHT:
+			x_stretch.pos = pos - x_stretch.size
+		StretchType.MIDDLE:
+			x_stretch.pos = pos
+	
+	
+
 
 func do_undo_step(delta):
 	if x_scale == 1:
