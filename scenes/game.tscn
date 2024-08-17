@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://8tdydcje4fe4"]
+[gd_scene load_steps=21 format=4 uid="uid://8tdydcje4fe4"]
 
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="PackedScene" uid="uid://6j8yqwaj8xar" path="res://scenes/player.tscn" id="1_voq50"]
 [ext_resource type="Texture2D" uid="uid://dlt34dhsjx2s3" path="res://assets/sprites/world_tileset.png" id="2_wmxtd"]
 [ext_resource type="PackedScene" uid="uid://b5gm1h3t1vcbt" path="res://scenes/stretchy_tilemap.tscn" id="3_yt2vt"]
+[ext_resource type="Texture2D" uid="uid://cq0a74krvu0tn" path="res://assets/sprites/coin.png" id="5_nmd61"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4gyr"]
 texture = ExtResource("2_wmxtd")
@@ -176,6 +177,98 @@ texture = ExtResource("2_wmxtd")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_y4gyr")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkyfh"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83aad"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxyi8"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rftf7"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypylu"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2nbv"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ordlx"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puscv"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phmsi"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57t72"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l7om"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iag4d"]
+atlas = ExtResource("5_nmd61")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71tk3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkyfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83aad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxyi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rftf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypylu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2nbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ordlx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puscv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phmsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57t72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l7om")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iag4d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Game" type="Node2D"]
 
 [node name="Ui" parent="." instance=ExtResource("1_88vku")]
@@ -192,6 +285,12 @@ position_smoothing_enabled = true
 tile_map_data = PackedByteArray("AAD+/wMAAQAAAAAAAAD//wMAAQAAAAAAAAAAAAMAAQAAAAAAAAABAAMAAQAAAAAAAAACAAMAAQAAAAAAAAADAAMAAQAAAAAAAAAEAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAGAAMAAQAAAAAAAAD9/wMAAQAAAAAAAAAHAAUAAQAAAAAAAAAIAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAKAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAMAAUAAQAAAAAAAAANAAUAAQAAAAAAAAD1/wUAAQAAAAAAAAD2/wUAAQAAAAAAAAD3/wUAAQAAAAAAAAD4/wUAAQAAAAAAAAD5/wUAAQAAAAAAAAD6/wUAAQAAAAAAAAD7/wUAAQAAAAAAAAD8/wUAAQAAAAAAAADy/wMAAQAAAAAAAADz/wMAAQAAAAAAAAD0/wMAAQAAAAAAAAAOAAMAAQAAAAAAAAAPAAMAAQAAAAAAAAAQAAMAAQAAAAAAAAARAPr/AQAAAAAAAAASAPr/AQAAAAAAAAATAPr/AQAAAAAAAADx//r/AQAAAAAAAADw//r/AQAAAAAAAADv//r/AQAAAAAAAADv//v/AQAAAAEAAADw//v/AQAAAAEAAADx//v/AQAAAAEAAADx//z/AQAAAAEAAADx//3/AQAAAAEAAADw//3/AQAAAAEAAADw//7/AQAAAAEAAADw////AQAAAAEAAADw/wAAAQAAAAEAAADx/wAAAQAAAAEAAADx/wEAAQAAAAEAAADx/wIAAQAAAAEAAADx/wMAAQAAAAEAAADx/wQAAQAAAAEAAADw/wQAAQAAAAEAAADw/wUAAQAAAAEAAADw/wYAAQAAAAEAAADx/wYAAQAAAAEAAADv/wYAAQAAAAEAAADv/wUAAQAAAAEAAADv/wQAAQAAAAEAAADv/wMAAQAAAAEAAADv/wIAAQAAAAEAAADv/wEAAQAAAAEAAADv/wAAAQAAAAEAAADv////AQAAAAEAAADv//7/AQAAAAEAAADv//3/AQAAAAEAAADw//z/AQAAAAEAAADv//z/AQAAAAEAAADw/wIAAQAAAAEAAADw/wEAAQAAAAEAAADx//7/AQAAAAEAAADx////AQAAAAEAAADw/wMAAQAAAAEAAADy/wQAAQAAAAEAAADz/wQAAQAAAAEAAAD0/wQAAQAAAAEAAAD0/wUAAQAAAAEAAADz/wUAAQAAAAEAAADy/wUAAQAAAAEAAADx/wUAAQAAAAEAAADy/wYAAQAAAAEAAADz/wYAAQAAAAEAAAD0/wYAAQAAAAEAAAD1/wYAAQAAAAEAAAD2/wYAAQAAAAEAAAD3/wYAAQAAAAEAAAD4/wYAAQAAAAEAAAD5/wYAAQAAAAEAAAD6/wYAAQAAAAEAAAD7/wYAAQAAAAEAAAD8/wYAAQAAAAEAAAD9/wYAAQAAAAEAAAD+/wYAAQAAAAEAAAD//wYAAQAAAAEAAAAAAAYAAQAAAAEAAAABAAYAAQAAAAEAAAACAAYAAQAAAAEAAAADAAYAAQAAAAEAAAAEAAYAAQAAAAEAAAAFAAYAAQAAAAEAAAAGAAYAAQAAAAEAAAAHAAYAAQAAAAEAAAAIAAYAAQAAAAEAAAAJAAYAAQAAAAEAAAAKAAYAAQAAAAEAAAALAAYAAQAAAAEAAAAMAAYAAQAAAAEAAAANAAYAAQAAAAEAAAAOAAYAAQAAAAEAAAAPAAYAAQAAAAEAAAAQAAYAAQAAAAEAAAARAAYAAQAAAAEAAAASAAYAAQAAAAEAAAATAAYAAQAAAAEAAAATAPv/AQAAAAEAAAATAPz/AQAAAAEAAAATAP3/AQAAAAEAAAATAP7/AQAAAAEAAAATAP//AQAAAAEAAAATAAAAAQAAAAEAAAATAAEAAQAAAAEAAAATAAIAAQAAAAEAAAATAAMAAQAAAAEAAAATAAQAAQAAAAEAAAATAAUAAQAAAAEAAAASAPv/AQAAAAEAAAARAPv/AQAAAAEAAAARAPz/AQAAAAEAAAARAP3/AQAAAAEAAAARAP7/AQAAAAEAAAARAP//AQAAAAEAAAARAAAAAQAAAAEAAAARAAEAAQAAAAEAAAARAAIAAQAAAAEAAAARAAMAAQAAAAEAAAARAAQAAQAAAAEAAAARAAUAAQAAAAEAAAASAAUAAQAAAAEAAAASAAQAAQAAAAEAAAASAAMAAQAAAAEAAAASAAIAAQAAAAEAAAASAAEAAQAAAAEAAAASAAAAAQAAAAEAAAASAP//AQAAAAEAAAASAP7/AQAAAAEAAAASAP3/AQAAAAEAAAASAPz/AQAAAAEAAAAQAAQAAQAAAAEAAAAPAAQAAQAAAAEAAAAOAAQAAQAAAAEAAAAOAAUAAQAAAAEAAAAPAAUAAQAAAAEAAAAQAAUAAQAAAAEAAAD9/wQAAQAAAAEAAAD+/wQAAQAAAAEAAAD//wQAAQAAAAEAAAAAAAQAAQAAAAEAAAABAAQAAQAAAAEAAAACAAQAAQAAAAEAAAADAAQAAQAAAAEAAAAEAAQAAQAAAAEAAAAFAAQAAQAAAAEAAAAGAAQAAQAAAAEAAAAGAAUAAQAAAAEAAAAFAAUAAQAAAAEAAAAEAAUAAQAAAAEAAAADAAUAAQAAAAEAAAACAAUAAQAAAAEAAAABAAUAAQAAAAEAAAAAAAUAAQAAAAEAAAD//wUAAQAAAAEAAAD+/wUAAQAAAAEAAAD9/wUAAQAAAAEAAAD+////AQACAAEAAAD/////AQACAAEAAAAAAP//AQACAAEAAAABAP//AQACAAEAAAACAP//AQACAAEAAAADAP//AQACAAEAAADz//7/AQAGAAEAAAD0//7/AQAGAAEAAAD1//7/AQAGAAEAAAD2//7/AQAGAAEAAAD3//7/AQAGAAEAAAD4//7/AQAGAAEAAAD5//7/AQAGAAEAAAD6//7/AQAGAAEAAAD7//7/AQAGAAEAAAD8//7/AQAGAAEAAAAFAP7/AQAGAAEAAAAGAP7/AQAGAAEAAAAHAP7/AQAGAAEAAAAIAP7/AQAGAAEAAAAJAP7/AQAGAAEAAAAKAP7/AQAGAAEAAAALAP7/AQAGAAEAAAAMAP7/AQAGAAEAAAANAP7/AQAGAAEAAAAOAP7/AQAGAAEAAAAPAP7/AQAGAAEAAAAEAP//AQACAAEAAAD9//7/AQAGAAEAAAA=")
 tile_set = SubResource("TileSet_r4k63")
 
-[node name="StretchyTilemap" parent="." node_paths=PackedStringArray("main_tilemap", "stretch_center") instance=ExtResource("3_yt2vt")]
+[node name="IntervalCenter" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_71tk3")
+autoplay = "default"
+frame_progress = 0.30893
+
+[node name="StretchyTilemap" parent="." node_paths=PackedStringArray("main_tilemap", "stretch_center", "player_pos") instance=ExtResource("3_yt2vt")]
 main_tilemap = NodePath("../TileMapLayer")
-stretch_center = NodePath("../Player")
+stretch_center = NodePath("../IntervalCenter")
+player_pos = NodePath("../Player")

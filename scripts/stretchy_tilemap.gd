@@ -4,7 +4,8 @@ const TILE_SIZE: int = 16
 const STRETCH_SPEED: float = 3.0
 
 @export var main_tilemap: TileMapLayer
-@export var stretch_center: Node2D
+@export var stretch_center: AnimatedSprite2D
+@export var player_pos: Node2D
 
 var tileset: TileSet
 
@@ -17,6 +18,8 @@ var tileset: TileSet
 
 var tile_coords: Array[Vector2i]
 var tiles_atlas: Array[Vector2i]
+
+var stretch_item_at_player: bool = true
 
 class Stretch:
 	var size: int
@@ -32,9 +35,15 @@ enum StretchType {
 var x_stretch: Stretch
 var stretch_type: StretchType = StretchType.MIDDLE
 
-var x_scale: float = 0
+const MAX_SCALE: float = 2.5
+var x_scale: float = 1
 var increase_scale: bool = false
 var decrease_scale: bool = false
+
+const UNDO_SPEED: float = 1.0
+const MAX_UNDO_STEP: float = 1.0
+var is_undoing: bool = false
+var undo_timer: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,20 +70,65 @@ func _input(event):
 	increase_scale = Input.is_action_pressed("strech") 
 	decrease_scale = Input.is_action_pressed("shrink")
 	
+	if Input.is_action_just_pressed("swap_stretch_mode") and x_scale == 1:
+		match stretch_type:
+			StretchType.LEFT:
+				stretch_type = StretchType.RIGHT
+			StretchType.RIGHT:
+				stretch_type = StretchType.MIDDLE
+			StretchType.MIDDLE:
+				stretch_type = StretchType.LEFT
+	
+	if Input.is_action_just_pressed("undo_stretch"):
+		is_undoing = true
+		undo_timer = 0
+	
+	if Input.is_action_just_pressed("toggle_stretch_item"):
+		stretch_item_at_player = !stretch_item_at_player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	x_scale += (increase_scale as int - (decrease_scale as int)) * delta * STRETCH_SPEED
-	if x_scale < 0:
-		x_scale = 0
-	x_stretch.scale = compute_scale(x_scale)
+	update_item_position()
+	if is_undoing:
+		do_undo_step(delta)
+	else:
+		process_stretch_input(delta)
+	x_stretch.scale = x_scale
 	
 	reset_tilemaps()
 	draw_tilemaps()
 	set_offsets_and_scale()
 
-func compute_scale(scale) -> float:
-	return scale
+func update_item_position():
+	if x_scale != 1:
+		stretch_item_at_player = false
+	
+	if stretch_item_at_player:
+		stretch_center.visible = false
+		var player_pos_int = player_pos.position as Vector2i
+		stretch_center.position.x = (player_pos_int.x / TILE_SIZE) as int * TILE_SIZE + TILE_SIZE * 0.5
+		stretch_center.position.y = player_pos_int.y
+	else:
+		stretch_center.visible = true
+	x_stretch.pos = stretch_center.position.x / 16 as int
+
+func do_undo_step(delta):
+	if x_scale == 1:
+		is_undoing = false
+	else:
+		undo_timer += delta * UNDO_SPEED
+		x_scale = linear_interpolate(x_scale, 1, undo_timer)
+
+func process_stretch_input(delta):
+	x_scale += (increase_scale as int - (decrease_scale as int)) * delta * STRETCH_SPEED
+	x_scale = clamp(x_scale, 0, MAX_SCALE)
+
+func linear_interpolate(x, y, t) -> float:
+	if t < 0:
+		return x
+	if t > 1:
+		return y
+	return x * (1 - t) + y * t	
 
 # Clears all tilemaps
 func reset_tilemaps():
