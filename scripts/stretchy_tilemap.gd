@@ -5,7 +5,7 @@ const STRETCH_SPEED: float = 3.0
 
 @export var main_tilemap: TileMapLayer
 @export var stretch_center: AnimatedSprite2D
-@export var player_pos: Node2D
+@export var player_pos: CharacterBody2D
 
 var tileset: TileSet
 var source: int
@@ -33,10 +33,19 @@ enum StretchType {
 	RIGHT,
 }
 
+class LastPosState:
+	var tilemap: int
+	var cent_dist: float
+	var scale: float
+	var offsets: Vector3
+
+var last_state: LastPosState
+
 var x_stretch: Stretch
 var stretch_type: StretchType = StretchType.MIDDLE
 
 const MAX_SCALE: float = 2.5
+const ROUND_THRESHOLD: float = 0.04
 var x_scale: float = 1
 var increase_scale: bool = false
 var decrease_scale: bool = false
@@ -61,9 +70,15 @@ func _ready():
 
 	x_stretch  = Stretch.new()
 	x_stretch.size = 3
-	x_stretch.pos = 10
+	x_stretch.pos = 0
 	x_stretch.scale = 1
 	
+	last_state = LastPosState.new()
+	last_state.cent_dist = player_pos.position.x - stretch_center.position.x
+	last_state.tilemap = 1
+	last_state.offsets = Vector3(0, 0, 0)
+	last_state.scale = x_stretch.scale
+		
 
 func get_atlas_coord(coord) -> Vector2i:
 	return main_tilemap.get_cell_atlas_coords(coord)
@@ -95,11 +110,47 @@ func _process(delta):
 		do_undo_step(delta)
 	else:
 		process_stretch_input(delta)
+	if x_scale > 1 - ROUND_THRESHOLD and x_scale < 1 + ROUND_THRESHOLD:
+		x_scale = 1
 	x_stretch.scale = x_scale
 	
 	reset_tilemaps()
 	draw_tilemaps()
 	set_offsets_and_scale()
+	force_player_pos_update()
+	update_last_state()
+
+func force_player_pos_update():
+	var tilemap = compute_tilemap()
+	if last_state.tilemap != tilemap or !player_pos.is_on_floor():
+		return
+	
+	if tilemap == 0:
+		player_pos.position.x += left_tilemap.position.x - last_state.offsets.x
+	elif tilemap == 2:
+		player_pos.position.x += right_tilemap.position.x - last_state.offsets.z
+	elif last_state.scale != x_stretch.scale:
+		player_pos.position.x += last_state.cent_dist * x_stretch.scale + stretch_center.position.x - player_pos.position.x
+
+func update_last_state():
+	last_state.tilemap = compute_tilemap()
+	last_state.cent_dist = (player_pos.position.x - stretch_center.position.x) / x_stretch.scale
+	last_state.scale = x_stretch.scale
+	last_state.offsets = Vector3(left_tilemap.position.x, middle_tilemap.position.x, right_tilemap.position.x)	
+
+func compute_tilemap() -> int:
+	var int_beg = x_stretch.pos - x_stretch.size
+	var int_end = x_stretch.pos + x_stretch.size + 1
+	
+	var left_pos = left_tilemap.position.x + TILE_SIZE * int_beg
+	var right_pos = right_tilemap.position.x + TILE_SIZE * int_end
+	
+	if player_pos.position.x < left_pos:
+		return 0
+	elif player_pos.position.x < right_pos:
+		return 1
+	else:
+		return 2
 
 func update_item_position():
 	if x_scale != 1:
