@@ -33,7 +33,7 @@ const TILE_SIZE: int = 16
 const SCALE_SPEED: float = 3.0
 
 # Upper bound for stretching
-const MAX_SCALE: float = 2.5
+const MAX_SCALE: float = 5
 
 # If stretch is near 1, round it to 1
 const ROUND_THRESHOLD: float = 0.04
