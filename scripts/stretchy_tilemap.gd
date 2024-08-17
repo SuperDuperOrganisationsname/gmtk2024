@@ -47,8 +47,8 @@ func get_atlas_coord(coord) -> Vector2i:
 	return main_tilemap.get_cell_atlas_coords(coord)
 
 func _input(event):
-	increase_scale = Input.is_key_pressed(KEY_A) 
-	decrease_scale = Input.is_key_pressed(KEY_S)
+	increase_scale = Input.is_action_pressed("strech") 
+	decrease_scale = Input.is_action_pressed("shrink")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
