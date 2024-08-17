@@ -1,5 +1,8 @@
 extends Node2D
 
+const TILE_SIZE: int = 16
+const STRETCH_SPEED: float = 3.0
+
 @export var main_tilemap: TileMapLayer
 @export var stretch_center: Node2D
 
@@ -36,12 +39,13 @@ func _ready():
 	right_tilemap.set_tile_set(tileset)
 	middle_tilemap.set_tile_set(tileset)
 	
-	main_tilemap.visible = false
+	main_tilemap.enabled = false
 
 	x_stretch  = Stretch.new()
 	x_stretch.size = 3
-	x_stretch.pos = 6
+	x_stretch.pos = 10
 	x_stretch.scale = 1
+	
 
 func get_atlas_coord(coord) -> Vector2i:
 	return main_tilemap.get_cell_atlas_coords(coord)
@@ -53,7 +57,9 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	x_scale += (increase_scale as int - (decrease_scale as int)) * delta
+	x_scale += (increase_scale as int - (decrease_scale as int)) * delta * STRETCH_SPEED
+	if x_scale < 0:
+		x_scale = 0
 	x_stretch.scale = compute_scale(x_scale)
 	
 	reset_tilemaps()
@@ -61,13 +67,7 @@ func _process(delta):
 	set_offsets_and_scale()
 
 func compute_scale(scale) -> float:
-	if scale == 0:
-		return 1
-	
-	if scale > 0:
-		return scale + 1
-	
-	return 1 / (1 - scale)
+	return scale
 
 # Clears all tilemaps
 func reset_tilemaps():
@@ -94,5 +94,5 @@ func draw_tilemaps():
 
 func set_offsets_and_scale():
 	middle_tilemap.scale.x = x_stretch.scale
-	middle_tilemap.position.x = 16 * (x_stretch.scale - 1) * -x_stretch.size 
-	right_tilemap.position.x = 16 * (x_stretch.scale - 1) * (x_stretch.size * 2 + 1)
+	middle_tilemap.position.x = TILE_SIZE * (1 - x_stretch.scale) * (x_stretch.pos - x_stretch.size)
+	right_tilemap.position.x = TILE_SIZE * (2 * x_stretch.size + 1) * (x_stretch.scale - 1)
