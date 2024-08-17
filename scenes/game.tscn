@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="PackedScene" uid="uid://6j8yqwaj8xar" path="res://scenes/player.tscn" id="1_voq50"]
 [ext_resource type="Texture2D" uid="uid://bepq6xr6mulqc" path="res://assets/sprites/mini_tile_sketch.png" id="3_n7hft"]
-[ext_resource type="PackedScene" uid="uid://b5gm1h3t1vcbt" path="res://scenes/stretchy_tilemap.tscn" id="3_yt2vt"]
+[ext_resource type="PackedScene" uid="uid://b5gm1h3t1vcbt" path="res://scenes/scaling_tilemap.tscn" id="3_yt2vt"]
 [ext_resource type="Texture2D" uid="uid://cq0a74krvu0tn" path="res://assets/sprites/coin.png" id="5_nmd61"]
 [ext_resource type="PackedScene" uid="uid://b2irioi3olfnc" path="res://scenes/enemies/enemy.tscn" id="6_20o2s"]
 
@@ -143,10 +143,10 @@ sprite_frames = SubResource("SpriteFrames_71tk3")
 autoplay = "default"
 frame_progress = 0.30893
 
-[node name="StretchyTilemap" parent="." node_paths=PackedStringArray("main_tilemap", "stretch_center", "player_pos") instance=ExtResource("3_yt2vt")]
+[node name="ScalingTilemap" parent="." node_paths=PackedStringArray("main_tilemap", "scale_center", "player") instance=ExtResource("3_yt2vt")]
 main_tilemap = NodePath("../TileMap")
-stretch_center = NodePath("../IntervalCenter")
-player_pos = NodePath("../Player")
+scale_center = NodePath("../IntervalCenter")
+player = NodePath("../Player")
 
 [node name="Enemy" parent="." instance=ExtResource("6_20o2s")]
 position = Vector2(-157, 44)

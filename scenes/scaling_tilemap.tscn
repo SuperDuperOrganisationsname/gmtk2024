@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5gm1h3t1vcbt"]
 
-[ext_resource type="Script" path="res://scripts/stretchy_tilemap.gd" id="1_5trgv"]
+[ext_resource type="Script" path="res://scripts/scaling_tilemap.gd" id="1_5trgv"]
 
-[node name="StretchyTilemap" type="Node2D"]
+[node name="ScalingTilemap" type="Node2D"]
 script = ExtResource("1_5trgv")
 
 [node name="LeftTileMap" type="TileMapLayer" parent="."]
