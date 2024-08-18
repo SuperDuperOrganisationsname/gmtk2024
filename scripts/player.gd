@@ -47,7 +47,9 @@ func _physics_process(delta):
 		velocity.y = 0	
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and coyote_timer.time_left > 0:
+	if Input.is_action_just_pressed("jump"):
+		input_buffer.start(jump_buffer_time)
+	if input_buffer.time_left > 0 and coyote_timer.time_left > 0:
 		coyote_timer.stop()
 		velocity.y = JUMP_VELOCITY
 		
