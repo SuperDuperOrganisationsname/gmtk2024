@@ -1,0 +1,16 @@
+{
+  "name": "vali-palettes",
+  "displayName": "Vali's Palettes",
+  "description": "Palettes made by Vali",
+  "version": "1.0",
+  "author": { "name": "Vali", "url": "https://lospec.com/palette-list/midnight-ablaze" },
+  "publisher": "SuperDuperOrganisationsname",
+  "categories": [
+    "Palettes"
+  ],
+  "contributes": {
+    "palettes": [
+      { "id": "midnight_frozen", "path": "./midnight_frozen.gpl" }
+    ]
+  }
+}
