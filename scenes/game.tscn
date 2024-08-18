@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://8tdydcje4fe4"]
+[gd_scene load_steps=24 format=4 uid="uid://8tdydcje4fe4"]
 
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="PackedScene" uid="uid://6j8yqwaj8xar" path="res://scenes/player.tscn" id="1_voq50"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b5gm1h3t1vcbt" path="res://scenes/scaling_tilemap.tscn" id="3_yt2vt"]
 [ext_resource type="Texture2D" uid="uid://cq0a74krvu0tn" path="res://assets/sprites/coin.png" id="5_nmd61"]
 [ext_resource type="PackedScene" uid="uid://b2irioi3olfnc" path="res://scenes/enemies/enemy.tscn" id="6_20o2s"]
+[ext_resource type="PackedScene" uid="uid://buu60msuf71ru" path="res://scenes/talisman.tscn" id="8_5hwxv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xug0t"]
 texture = ExtResource("3_ubm54")
@@ -415,14 +416,17 @@ tile_map_data = PackedByteArray("AAD9/wUAAAACAAkAAAD9/wYAAAACAAkAAAD9/wcAAAACAAk
 tile_set = SubResource("TileSet_2jjwf")
 
 [node name="IntervalCenter" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_71tk3")
 autoplay = "default"
 frame_progress = 0.30893
 
 [node name="ScalingTilemap" parent="." node_paths=PackedStringArray("main_tilemap", "scale_center", "player") instance=ExtResource("3_yt2vt")]
 main_tilemap = NodePath("../TileMap")
-scale_center = NodePath("../IntervalCenter")
+scale_center = NodePath("../Talisman")
 player = NodePath("../Player")
 
 [node name="Enemy" parent="." instance=ExtResource("6_20o2s")]
 position = Vector2(-227, 7)
+
+[node name="Talisman" parent="." instance=ExtResource("8_5hwxv")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8ugs4lfyxlql"]
+[gd_scene load_steps=3 format=3 uid="uid://buu60msuf71ru"]
 
 [ext_resource type="Texture2D" uid="uid://bi26ryvper6w7" path="res://assets/sprites/talisman.png" id="1_xh8ro"]
 
@@ -10,6 +10,7 @@ height = 8.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xh8ro")
+hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_reikt")
