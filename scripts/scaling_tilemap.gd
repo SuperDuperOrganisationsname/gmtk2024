@@ -1,5 +1,7 @@
 extends Node2D
 
+signal return_talisman
+
 # ---------- Export-Variables ---------- #
 
 # The TileMap: will be copied and disabled
@@ -156,9 +158,10 @@ func _input(_event):
 	if Input.is_action_just_pressed("undo_scale"):
 		is_undoing = true
 	
-	# Get/Drop interval-marker
-	if Input.is_action_just_pressed("toggle_scale_item"):
-		scale_item_at_player = !scale_item_at_player
+	# Return Talisman to Player
+	if Input.is_action_just_released("throw") and !scale_item_at_player:
+		scale_item_at_player = true
+		return_talisman.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -190,7 +193,7 @@ func update_item_position():
 		$Talisman.freeze = false
 		$Talisman.visible = false
 		var player_pos_int = player.position as Vector2i
-		var new_pos = Vector2((player_pos_int.x / TILE_SIZE) as int * TILE_SIZE + TILE_SIZE * 0.5, player_pos_int.y)
+		var new_pos = Vector2((player_pos_int.x / TILE_SIZE) as int * TILE_SIZE + TILE_SIZE * 0.5, player_pos_int.y - 20)
 		if player.position.x < 0:
 			new_pos.x -= 2 * TILE_SIZE
 		$Talisman.new_position = new_pos
@@ -340,5 +343,5 @@ func _on_player_throw_talisman(vector: Vector2) -> void:
 		return
 	
 	scale_item_at_player = false
-	$Talisman.apply_impulse(vector * THROW_SPEED)
+	$Talisman.set_axis_velocity(vector * THROW_SPEED)
 	$Talisman.is_flying = true
