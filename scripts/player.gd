@@ -80,10 +80,10 @@ func _physics_process(delta):
 	else:
 		throw_indicator.visible = false
 	# throw talisman when button is released
-	if Input.is_action_just_released("throw"):
+	if Input.is_action_just_released("throw", true):
 		var v: Vector2 = INDICATOR_DISTANCE * Vector2(cos(indicator_rotation), sin(indicator_rotation)) + INDICATOR_ROTATION_CENTER
 		throw_talisman.emit(v.normalized())
-	if Input.is_action_just_pressed("drop"):
+	if Input.is_action_just_pressed("drop", true):
 		var v: Vector2 = Vector2.ZERO
 		throw_talisman.emit(v)
 
