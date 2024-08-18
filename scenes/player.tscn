@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cic6y"]
 [ext_resource type="Texture2D" uid="uid://c3ng8ye0qlgha" path="res://assets/sprites/main_charakter.png" id="2_dfnnq"]
-[ext_resource type="PackedScene" uid="uid://dlu0hf8xor7x1" path="res://scenes/throw_indicator.tscn" id="3_8pc0c"]
+[ext_resource type="PackedScene" path="res://scenes/throw_indicator.tscn" id="3_8pc0c"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6vknt"]
 animation = &"attack_left"

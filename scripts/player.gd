@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal throw_talisman(vector: Vector2)
 
+var can_throw: int = 0
+
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 const INDICATOR_DISTANCE = 18
@@ -37,9 +39,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	update_animation()
 	last_frame_in_air = not is_on_floor()
+	if can_throw > 0 and can_throw < 3:
+		can_throw -= 1
 
 func _physics_process(delta):
-	var throw_pressed = Input.is_action_pressed("throw", true)
+	var throw_pressed = Input.is_action_pressed("throw", true) and can_throw == 0
 	# Add the gravity.
 	if not is_on_floor():
 		if Input.is_action_pressed("down"):
@@ -72,7 +76,7 @@ func _physics_process(delta):
 	
 	# Throw indicator
 	# Setup throw indicator
-	if Input.is_action_just_pressed("throw", true):
+	if Input.is_action_just_pressed("throw", true) and can_throw == 0:
 		if last_direction == -1:
 			throw_indicator.rotation = PI
 			indicator_rotation = PI
@@ -91,12 +95,14 @@ func _physics_process(delta):
 	else:
 		throw_indicator.visible = false
 	# throw talisman when button is released
-	if Input.is_action_just_released("throw", true):
-		var v: Vector2 = INDICATOR_DISTANCE * Vector2(cos(indicator_rotation), sin(indicator_rotation)) + INDICATOR_ROTATION_CENTER
+	if Input.is_action_just_released("throw", true) and can_throw == 0:
+		var v: Vector2 = INDICATOR_DISTANCE * Vector2(cos(indicator_rotation), sin(indicator_rotation))
 		throw_talisman.emit(v.normalized())
-	if Input.is_action_just_pressed("drop", true):
-		var v: Vector2 = Vector2.ZERO
+		can_throw = 3
+	if Input.is_action_just_released("drop", true) and can_throw == 0:
+		var v: Vector2 = Vector2(0, 0.001)
 		throw_talisman.emit(v)
+		can_throw = 3
 
 	if direction != 0:
 		last_direction = direction
@@ -162,3 +168,7 @@ func update_animation():
 		else:
 			animation_tree["parameters/conditions/run"] = true
 			animation_tree["parameters/conditions/idle"] = false
+
+
+func _on_return_talisman() -> void:
+	can_throw = 2
