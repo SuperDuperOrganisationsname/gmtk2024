@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://sqya6is71pbm"]
+
+[ext_resource type="Script" path="res://scripts/squish_check.gd" id="1_mh2pg"]
+
+[node name="SquishCheck" type="Node2D"]
+script = ExtResource("1_mh2pg")
+
+[node name="UpRay" type="RayCast2D" parent="."]
+
+[node name="LeftRay" type="RayCast2D" parent="."]
+
+[node name="DownRay" type="RayCast2D" parent="."]
+
+[node name="RightRay" type="RayCast2D" parent="."]

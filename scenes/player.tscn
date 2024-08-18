@@ -1,8 +1,9 @@
-[gd_scene load_steps=63 format=3 uid="uid://6j8yqwaj8xar"]
+[gd_scene load_steps=64 format=3 uid="uid://6j8yqwaj8xar"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cic6y"]
 [ext_resource type="Texture2D" uid="uid://c3ng8ye0qlgha" path="res://assets/sprites/main_charakter.png" id="2_dfnnq"]
-[ext_resource type="PackedScene" uid="uid://dlu0hf8xor7x1" path="res://scenes/throw_indicator.tscn" id="3_8pc0c"]
+[ext_resource type="PackedScene" path="res://scenes/throw_indicator.tscn" id="3_8pc0c"]
+[ext_resource type="PackedScene" uid="uid://sqya6is71pbm" path="res://scenes/squish_check.tscn" id="4_fj71v"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6vknt"]
 animation = &"attack_left"
@@ -831,5 +832,7 @@ debug_color = Color(0.99028, 0, 0.280283, 0.42)
 
 [node name="ThrowIndicator" parent="." instance=ExtResource("3_8pc0c")]
 position = Vector2(16, -13)
+
+[node name="SquishCheck" parent="." instance=ExtResource("4_fj71v")]
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
