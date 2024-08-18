@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal throw_talisman(vector: Vector2)
 
 const SPEED = 130.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -300.0 
 const INDICATOR_DISTANCE = 18
 const INDICATOR_ROTATION_SPEED = 0.2
 const INDICATOR_ROTATION_CENTER = Vector2(0, -17)
@@ -17,9 +17,17 @@ var indicator_rotation = 0
 # checks if the last frame was in the air, to detect when you land
 var last_frame_in_air = false
 
+@export_group("Timers")
+## Time in seconds that a jump ist still performed after press
+@export var jump_buffer_time: float = 0.1
+## Time in seconds that the player can still jump after leaving the ground
+@export var coyote_time: float = 0.1
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var throw_indicator: StaticBody2D = $ThrowIndicator
+@onready var coyote_timer: Timer = $CoyoteTimer
+@onready var input_buffer: Timer = $InputBuffer
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -35,10 +43,13 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
-		velocity.y = 0
-
+		coyote_timer.start(coyote_time)	
+		velocity.y = 0	
+	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and coyote_timer.time_left > 0:
+		print(coyote_timer.time_left)
+		coyote_timer.stop()
 		velocity.y = JUMP_VELOCITY
 		
 	direction = Input.get_axis("move_left", "move_right")
