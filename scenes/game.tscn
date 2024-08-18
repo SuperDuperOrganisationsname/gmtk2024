@@ -332,4 +332,5 @@ position = Vector2(-227, 7)
 
 [connection signal="throw_talisman" from="Player" to="ScalingTilemap" method="_on_player_throw_talisman"]
 [connection signal="change_scale_type" from="ScalingTilemap" to="Ui" method="_on_scaling_tilemap_change_scale_type"]
+[connection signal="player_movement_enable" from="ScalingTilemap" to="Player" method="_enable_player_movement"]
 [connection signal="return_talisman" from="ScalingTilemap" to="Player" method="_on_return_talisman"]

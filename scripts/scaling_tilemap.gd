@@ -5,6 +5,9 @@ signal return_talisman
 ## used to change the scale type logo in the ui
 signal change_scale_type(int)
 
+## enable/disable player movement
+signal player_movement_enable(enable: bool)
+
 # ---------- Export-Variables ---------- #
 
 # The TileMap: will be copied and disabled
@@ -31,13 +34,13 @@ signal change_scale_type(int)
 const TILE_SIZE: int = 16
 
 # Speed for scaling (times delta_time)
-const SCALE_SPEED: float = 3.0
+const SCALE_SPEED: float = 2.5
 
 # Upper bound for stretching
 const MAX_SCALE: float = 5
 
 # If stretch is near 1, round it to 1
-const ROUND_THRESHOLD: float = 0.04
+const ROUND_THRESHOLD: float = 0.033
 
 # Speed of undoing a stretch
 const UNDO_SPEED: float = 3.0
@@ -180,6 +183,7 @@ func _process(delta):
 	
 	# Update player position
 	force_player_pos_update()
+	enable_player_movement()
 	
 	# Store data
 	store_last_state()
@@ -318,6 +322,8 @@ func force_player_pos_update():
 	elif last_state.scale != scaling.scale:
 		player.position.x += last_state.cent_dist * scaling.scale + $Talisman.position.x - player.position.x
 
+func enable_player_movement():
+	player_movement_enable.emit(last_state.scale == scaling.scale)
 
 # ----------- Store Data ---------- #
 
