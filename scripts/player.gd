@@ -36,7 +36,7 @@ func _ready() -> void:
 	animation_tree.active = true
 	throw_indicator.visible = false
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_animation()
 	last_frame_in_air = not is_on_floor()
 	if can_throw > 0 and can_throw < 3:

@@ -1,9 +1,14 @@
 extends RigidBody2D
 
+signal return_me
+
 var new_position: Vector2 = Vector2(0, 0)
 var update_position: bool = false
 
 var is_flying: bool = false
+var should_freeze: bool = false
+
+var squish_counter: int = 0
 
 func _integrate_forces(state) -> void:
 	if update_position:
@@ -17,9 +22,16 @@ func _integrate_forces(state) -> void:
 			pos.x -= 16
 		pos.x = pos.x / 16 as int * 16 + 8
 		
-		
 		state.transform = Transform2D(0.0, pos)
-		self.freeze = true	
+		should_freeze = true	
 
-func _process(delta: float) -> void:
-	pass
+func _process(_delta: float) -> void:
+	if should_freeze:
+		self.freeze = true
+		should_freeze = false
+
+func _on_squished() -> void:
+	squish_counter += 1
+	if squish_counter == 10:
+		return_me.emit()
+		squish_counter = 0
