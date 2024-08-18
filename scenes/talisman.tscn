@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://buu60msuf71ru"]
+[gd_scene load_steps=4 format=3 uid="uid://buu60msuf71ru"]
 
+[ext_resource type="Script" path="res://scripts/rigidbody_place.gd" id="1_cip6f"]
 [ext_resource type="Texture2D" uid="uid://bi26ryvper6w7" path="res://assets/sprites/talisman.png" id="1_xh8ro"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_reikt"]
@@ -7,6 +8,8 @@ radius = 3.0
 height = 8.0
 
 [node name="Talisman" type="RigidBody2D"]
+lock_rotation = true
+script = ExtResource("1_cip6f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xh8ro")

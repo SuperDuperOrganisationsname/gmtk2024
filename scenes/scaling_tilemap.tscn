@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5gm1h3t1vcbt"]
+[gd_scene load_steps=3 format=3 uid="uid://b5gm1h3t1vcbt"]
 
 [ext_resource type="Script" path="res://scripts/scaling_tilemap.gd" id="1_5trgv"]
+[ext_resource type="PackedScene" uid="uid://buu60msuf71ru" path="res://scenes/talisman.tscn" id="2_483vb"]
 
 [node name="ScalingTilemap" type="Node2D"]
 script = ExtResource("1_5trgv")
@@ -20,3 +21,6 @@ default_color = Color(0.835294, 0.235294, 0.415686, 1)
 z_index = 6
 width = 0.5
 default_color = Color(0.835294, 0.235294, 0.415686, 1)
+
+[node name="Talisman" parent="." instance=ExtResource("2_483vb")]
+collision_layer = 0

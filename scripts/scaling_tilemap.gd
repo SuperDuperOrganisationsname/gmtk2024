@@ -5,9 +5,6 @@ extends Node2D
 # The TileMap: will be copied and disabled
 @export var main_tilemap: TileMapLayer
 
-# Intervals are scaled around this object(-position)
-@export var scale_center: Node2D
-
 # The player character
 @export var player: CharacterBody2D
 
@@ -22,7 +19,6 @@ extends Node2D
 
 # The stretched tilemap: if no stretch is applied, this is the main one
 @onready var middle_tilemap: TileMapLayer = $MiddleTileMap
-
 
 # ------------- Constants -------------- #
 
@@ -41,6 +37,8 @@ const ROUND_THRESHOLD: float = 0.04
 # Speed of undoing a stretch
 const UNDO_SPEED: float = 3.0
 
+# Force Multiplier for throwing the Talisman
+const THROW_SPEED: float = 500.0
 
 # ----------- Helper-Structs ---------- #
 
@@ -60,7 +58,7 @@ enum ScaleType {
 # Important position states of the last frame:
 # - in which tilemap was the player
 # - waht are the offsets of all three tilemaps
-# - scaled distance from scale_center to player
+# - scaled distance from talisman to player
 # - scaling of last frame
 class LastPosState:
 	var tilemap: int
@@ -127,7 +125,7 @@ func _ready():
 	
 	# Instantiate LastFrame-Data
 	last_state = LastPosState.new()
-	last_state.cent_dist = player.position.x - scale_center.position.x
+	last_state.cent_dist = player.position.x - $Talisman.position.x
 	last_state.tilemap = 1
 	last_state.offsets = Vector3(0, 0, 0)
 	last_state.scale = scaling.scale
@@ -189,15 +187,17 @@ func update_item_position():
 		scale_item_at_player = false
 	
 	if scale_item_at_player:
-		scale_center.visible = false
+		$Talisman.visible = false
 		var player_pos_int = player.position as Vector2i
-		scale_center.position.x = (player_pos_int.x / TILE_SIZE) as int * TILE_SIZE + TILE_SIZE * 0.5
-		scale_center.position.y = player_pos_int.y
+		var new_pos = Vector2((player_pos_int.x / TILE_SIZE) as int * TILE_SIZE + TILE_SIZE * 0.5, player_pos_int.y)
 		if player.position.x < 0:
-			scale_center.position.x -= 2 * TILE_SIZE
+			new_pos.x -= 2 * TILE_SIZE
+		$Talisman.new_position = new_pos
+		$Talisman.update_position = true
+		$Talisman.set_axis_velocity(Vector2(0, 0))
 	else:
-		scale_center.visible = true
-	var pos = scale_center.position.x / 16 as int
+		$Talisman.visible = true
+	var pos = $Talisman.position.x / 16 as int
 	
 	match scale_type:
 		ScaleType.LEFT:
@@ -306,7 +306,7 @@ func force_player_pos_update():
 	elif tilemap == 2:
 		player.position.x += right_tilemap.position.x - last_state.offsets.z
 	elif last_state.scale != scaling.scale:
-		player.position.x += last_state.cent_dist * scaling.scale + scale_center.position.x - player.position.x
+		player.position.x += last_state.cent_dist * scaling.scale + $Talisman.position.x - player.position.x
 
 
 # ----------- Store Data ---------- #
@@ -314,7 +314,7 @@ func force_player_pos_update():
 # Stores the current frame data
 func store_last_state():
 	last_state.tilemap = compute_tilemap()
-	last_state.cent_dist = (player.position.x - scale_center.position.x) / scaling.scale
+	last_state.cent_dist = (player.position.x - $Talisman.position.x) / scaling.scale
 	last_state.scale = scaling.scale
 	last_state.offsets = Vector3(left_tilemap.position.x, middle_tilemap.position.x, right_tilemap.position.x)	
 
@@ -332,3 +332,11 @@ func compute_tilemap() -> int:
 		return 1
 	else:
 		return 2
+
+# Throw the Talisman
+func _on_player_throw_talisman(vector: Vector2) -> void:
+	if !scale_item_at_player:
+		return
+	
+	scale_item_at_player = false
+	$Talisman.apply_impulse(vector * THROW_SPEED)

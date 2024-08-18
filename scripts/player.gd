@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	last_frame_in_air = not is_on_floor()
 
 func _physics_process(delta):
-	var throw_pressed = Input.is_action_pressed("throw")
+	var throw_pressed = Input.is_action_pressed("throw", true)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -63,7 +63,7 @@ func _physics_process(delta):
 	
 	# Throw indicator
 	# Setup throw indicator
-	if Input.is_action_just_pressed("throw"):
+	if Input.is_action_just_pressed("throw", true):
 		if last_direction == -1:
 			throw_indicator.rotation = PI
 			indicator_rotation = PI

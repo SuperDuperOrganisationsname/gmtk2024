@@ -784,6 +784,7 @@ height = 8.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
+collision_layer = 2
 script = ExtResource("1_cic6y")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
