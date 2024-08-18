@@ -499,6 +499,8 @@ position = Vector2(-240, -84)
 
 [node name="Enemy" parent="Levels/1" instance=ExtResource("6_20o2s")]
 position = Vector2(-227, 7)
+collision_layer = 4
+collision_mask = 15
 
 [node name="2" type="Node2D" parent="Levels"]
 
