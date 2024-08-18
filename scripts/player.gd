@@ -83,6 +83,9 @@ func _physics_process(delta):
 	if Input.is_action_just_released("throw"):
 		var v: Vector2 = INDICATOR_DISTANCE * Vector2(cos(indicator_rotation), sin(indicator_rotation)) + INDICATOR_ROTATION_CENTER
 		throw_talisman.emit(v.normalized())
+	if Input.is_action_just_pressed("drop"):
+		var v: Vector2 = Vector2.ZERO
+		throw_talisman.emit(v)
 
 	if direction != 0:
 		last_direction = direction
