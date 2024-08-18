@@ -187,6 +187,7 @@ func update_item_position():
 		scale_item_at_player = false
 	
 	if scale_item_at_player:
+		$Talisman.freeze = false
 		$Talisman.visible = false
 		var player_pos_int = player.position as Vector2i
 		var new_pos = Vector2((player_pos_int.x / TILE_SIZE) as int * TILE_SIZE + TILE_SIZE * 0.5, player_pos_int.y)
@@ -340,3 +341,4 @@ func _on_player_throw_talisman(vector: Vector2) -> void:
 	
 	scale_item_at_player = false
 	$Talisman.apply_impulse(vector * THROW_SPEED)
+	$Talisman.is_flying = true
