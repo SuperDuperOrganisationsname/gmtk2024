@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal throw_talisman(vector: Vector2)
 
 var can_throw: int = 0
+var can_move: bool = true
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -60,7 +61,7 @@ func _physics_process(delta):
 		velocity.y = 0	
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and can_move:
 		input_buffer.start(jump_buffer_time)
 	if input_buffer.time_left > 0 and coyote_timer.time_left > 0:
 		coyote_timer.stop()
@@ -69,11 +70,11 @@ func _physics_process(delta):
 	direction = Input.get_axis("move_left", "move_right")
 	var rotation_direction = direction
 	# left -1, right +1
-	if direction and not throw_pressed:
+	if direction and not throw_pressed and can_move:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
+
 	# Throw indicator
 	# Setup throw indicator
 	if Input.is_action_just_pressed("throw", true) and can_throw == 0:
@@ -106,6 +107,7 @@ func _physics_process(delta):
 
 	if direction != 0:
 		last_direction = direction
+
 	move_and_slide()
 	
 func update_animation():
@@ -132,7 +134,7 @@ func update_animation():
 		animation_tree["parameters/FallDown/blend_position"] = direction
 	
 	# jumping
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and can_move:
 		animation_tree["parameters/conditions/jump"] = true
 	else:
 		animation_tree["parameters/conditions/jump"] = false
@@ -172,3 +174,7 @@ func update_animation():
 
 func _on_return_talisman() -> void:
 	can_throw = 2
+
+
+func _enable_player_movement(enable: bool) -> void:
+	can_move = enable
