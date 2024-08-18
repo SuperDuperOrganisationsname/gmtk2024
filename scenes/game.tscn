@@ -442,9 +442,11 @@ texture = ExtResource("4_1x3xs")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_q5sna")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("levels")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("levels", "spawns", "player")]
 script = ExtResource("1_g7thr")
 levels = [NodePath("Levels/1"), NodePath("Levels/2"), NodePath("Levels/3")]
+spawns = [NodePath("Levels/1/Spawn"), NodePath("Levels/2/Spawn"), NodePath("Levels/3/Spawn")]
+player = NodePath("Player")
 
 [node name="Ui" parent="." instance=ExtResource("1_88vku")]
 
@@ -482,8 +484,7 @@ static_tilemaps = [NodePath("../Tilemaps/Background"), NodePath("../Tilemaps/For
 
 [node name="1" type="Node2D" parent="Levels"]
 
-[node name="Enemy" parent="Levels/1" instance=ExtResource("6_20o2s")]
-position = Vector2(-227, 7)
+[node name="Spawn" type="Node2D" parent="Levels/1"]
 
 [node name="Door" parent="Levels/1" node_paths=PackedStringArray("keys") instance=ExtResource("9_2g0te")]
 position = Vector2(160, -16)
@@ -496,12 +497,19 @@ position = Vector2(-488, 40)
 [node name="Key2" parent="Levels/1/Door" instance=ExtResource("11_ws4mx")]
 position = Vector2(-240, -84)
 
+[node name="Enemy" parent="Levels/1" instance=ExtResource("6_20o2s")]
+position = Vector2(-227, 7)
+
 [node name="2" type="Node2D" parent="Levels"]
+
+[node name="Spawn" type="Node2D" parent="Levels/2"]
 
 [node name="Door" parent="Levels/2" instance=ExtResource("9_2g0te")]
 position = Vector2(-80, 0)
 
 [node name="3" type="Node2D" parent="Levels"]
+
+[node name="Spawn" type="Node2D" parent="Levels/3"]
 
 [connection signal="throw_talisman" from="Player" to="Scaler" method="_on_player_throw_talisman"]
 [connection signal="change_scale_type" from="Scaler" to="Ui" method="_on_scaling_tilemap_change_scale_type"]

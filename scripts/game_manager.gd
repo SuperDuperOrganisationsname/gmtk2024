@@ -1,7 +1,9 @@
 extends Node2D
 
 @export var levels: Array[Node2D] = []
+@export var spawns: Array[Node2D] = []
 @export var current_level: int = 0
+@export var player: CharacterBody2D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -17,3 +19,4 @@ func _process(_delta: float) -> void:
 
 func _on_complete_level() -> void:
 	current_level += 1
+	player.position = spawns[current_level].position
