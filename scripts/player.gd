@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal throw_talisman(vector: Vector2)
 
 const SPEED = 130.0
-const JUMP_VELOCITY = -300.0 
+const JUMP_VELOCITY = -300.0
 const INDICATOR_DISTANCE = 18
 const INDICATOR_ROTATION_SPEED = 0.2
 const INDICATOR_ROTATION_CENTER = Vector2(0, -17)
@@ -44,10 +44,14 @@ func _physics_process(delta):
 	if not is_on_floor():
 		if Input.is_action_pressed("down"):
 			gravity_multiplier = 2.0
+			scale.x = 0.8
+			scale.y = 1.2
 		else:
 			gravity_multiplier = 1.0
+			scale = Vector2(1, 1)
 		velocity.y += gravity * delta * gravity_multiplier
 	else:
+		scale = Vector2(1, 1)
 		coyote_timer.start(coyote_time)	
 		velocity.y = 0	
 	
