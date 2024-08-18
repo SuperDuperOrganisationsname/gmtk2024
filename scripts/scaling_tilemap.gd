@@ -206,13 +206,15 @@ func update_item_position():
 		var player_pos_int = player.position as Vector2i
 		var new_pos = Vector2((player_pos_int.x / TILE_SIZE) as int * TILE_SIZE + TILE_SIZE * 0.5, player_pos_int.y - 20)
 		if player.position.x < 0:
-			new_pos.x -= 2 * TILE_SIZE
+			new_pos.x -= TILE_SIZE
 		$Talisman.new_position = new_pos
 		$Talisman.update_position = true
 		$Talisman.set_axis_velocity(Vector2(0, 0))
 	else:
 		$Talisman.visible = true
 	var pos = $Talisman.position.x / 16 as int
+	if $Talisman.position.x < 0:
+		pos -= 1
 	
 	match scale_type:
 		ScaleType.LEFT:
