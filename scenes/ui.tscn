@@ -76,6 +76,7 @@ offset_right = 31.0
 offset_bottom = 26.0
 text = "0.5"
 label_settings = SubResource("LabelSettings_vxwrb")
+horizontal_alignment = 1
 max_lines_visible = 1
 visible_characters = 3
 
@@ -87,7 +88,10 @@ offset_right = 25.0
 offset_bottom = 85.0
 text = "05"
 label_settings = SubResource("LabelSettings_4l7ex")
+horizontal_alignment = 1
 max_lines_visible = 1
 visible_characters = 2
 
 [connection signal="change_scale_type" from="." to="BaseUi" method="_on_ui_change_scale_type"]
+[connection signal="int_scale" from="." to="BaseUi" method="_update_int_scale"]
+[connection signal="int_size" from="." to="BaseUi" method="_update_int_size"]

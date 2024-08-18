@@ -1,5 +1,6 @@
 extends Node2D
 
+## return the talisman to the player
 signal return_talisman
 
 ## used to change the scale type logo in the ui
@@ -7,6 +8,12 @@ signal change_scale_type(int)
 
 ## enable/disable player movement
 signal player_movement_enable(enable: bool)
+
+## broadcast the current scale of the interval
+signal int_scale(scale: float)
+
+## broadcast the current size of the interval
+signal int_size(size: int)
 
 # ---------- Export-Variables ---------- #
 
@@ -189,8 +196,9 @@ func _process(delta):
 	force_player_pos_update()
 	enable_player_movement()
 	
-	# Store data
+	# Store/Broadcast data
 	store_last_state()
+	broadcast_data()
 
 
 # ------ Update Scaling/Positions -------- #
@@ -348,6 +356,10 @@ func store_last_state():
 	last_state.cent_dist = (player.position.x - $Talisman.position.x) / scaling.scale
 	last_state.scale = scaling.scale
 	last_state.offsets = Vector3(left_tilemap.position.x, middle_tilemap.position.x, right_tilemap.position.x)	
+
+func broadcast_data():
+	int_scale.emit(scaling.scale)
+	int_size.emit(scaling.size * 2 + 1)
 
 # Compute in which tilemap the player is
 func compute_tilemap() -> int:
