@@ -16,6 +16,8 @@ signal player_movement_enable(enable: bool)
 # The player character
 @export var player: CharacterBody2D
 
+# When the player is on top of these tilemaps: do not move him
+@export var static_tilemaps: Array[TileMapLayer] = []
 
 # ------------ Child-Nodes ------------- #
 
@@ -75,7 +77,7 @@ class LastPosState:
 	var scale: float
 
 
-# -------- TileSet-Information -------- # 
+# -------- TileMap-Information -------- # 
 
 # The main TileSet
 var tileset: TileSet
@@ -89,6 +91,7 @@ var tile_coords: Array[Vector2i]
 # Coordinates in Atlas of all tiles to be rendered (same order as in tile_coords)
 var tiles_atlas: Array[Vector2i]
 
+var on_static_map: bool = false
 
 # -------- Scaling-Variables --------- #
 
@@ -182,6 +185,7 @@ func _process(delta):
 	update_indicators()
 	
 	# Update player position
+	on_static_map = player_on_static_tilemap()
 	force_player_pos_update()
 	enable_player_movement()
 	
@@ -312,7 +316,7 @@ func update_indicators():
 # Updates the player position if the map was scaled and the player thus moved
 func force_player_pos_update():
 	var tilemap = compute_tilemap()
-	if last_state.tilemap != tilemap or !player.is_on_floor():
+	if last_state.tilemap != tilemap or !player.is_on_floor() or on_static_map:
 		return
 	
 	if tilemap == 0:
@@ -323,7 +327,16 @@ func force_player_pos_update():
 		player.position.x += last_state.cent_dist * scaling.scale + $Talisman.position.x - player.position.x
 
 func enable_player_movement():
-	player_movement_enable.emit(last_state.scale == scaling.scale)
+	player_movement_enable.emit((last_state.scale == scaling.scale) or on_static_map)
+
+func player_on_static_tilemap() -> bool:
+	for map in static_tilemaps:
+		var map_pos = map.local_to_map(player.position)
+		map_pos.y += 1
+		if map.get_cell_atlas_coords(map_pos) != Vector2i(-1, -1):
+			return true
+		
+	return false
 
 # ----------- Store Data ---------- #
 
