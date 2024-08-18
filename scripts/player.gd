@@ -12,6 +12,7 @@ var direction = 1
 var last_direction = 1
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity_multiplier: float = 1.0
 var indicator_rotation = 0
 
 # checks if the last frame was in the air, to detect when you land
@@ -41,7 +42,11 @@ func _physics_process(delta):
 	var throw_pressed = Input.is_action_pressed("throw", true)
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		if Input.is_action_pressed("down"):
+			gravity_multiplier = 2.0
+		else:
+			gravity_multiplier = 1.0
+		velocity.y += gravity * delta * gravity_multiplier
 	else:
 		coyote_timer.start(coyote_time)	
 		velocity.y = 0	
