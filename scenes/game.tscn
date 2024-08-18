@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://8tdydcje4fe4"]
+[gd_scene load_steps=14 format=4 uid="uid://8tdydcje4fe4"]
 
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g7thr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b35r0lq84s0is" path="res://assets/sprites/tilesets/clean_tileset_red.png" id="4_1x3xs"]
 [ext_resource type="Texture2D" uid="uid://chun3iubya1vb" path="res://assets/sprites/tilesets/clean_tileset_blue.png" id="5_lhdsm"]
 [ext_resource type="PackedScene" uid="uid://b2irioi3olfnc" path="res://scenes/enemies/enemy.tscn" id="6_20o2s"]
+[ext_resource type="PackedScene" uid="uid://dd5mci1q6iisk" path="res://scenes/door.tscn" id="9_2g0te"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sage3"]
 texture = ExtResource("5_lhdsm")
@@ -482,7 +483,13 @@ static_tilemaps = [NodePath("../Tilemaps/Background"), NodePath("../Tilemaps/For
 [node name="Enemy" parent="Levels/1" instance=ExtResource("6_20o2s")]
 position = Vector2(-227, 7)
 
+[node name="Door" parent="Levels/1" instance=ExtResource("9_2g0te")]
+position = Vector2(160, -16)
+
 [node name="2" type="Node2D" parent="Levels"]
+
+[node name="Door" parent="Levels/2" instance=ExtResource("9_2g0te")]
+position = Vector2(-80, 0)
 
 [node name="3" type="Node2D" parent="Levels"]
 
@@ -490,3 +497,5 @@ position = Vector2(-227, 7)
 [connection signal="change_scale_type" from="Scaler" to="Ui" method="_on_scaling_tilemap_change_scale_type"]
 [connection signal="player_movement_enable" from="Scaler" to="Player" method="_enable_player_movement"]
 [connection signal="return_talisman" from="Scaler" to="Player" method="_on_return_talisman"]
+[connection signal="complete_level" from="Levels/1/Door" to="." method="_on_complete_level"]
+[connection signal="complete_level" from="Levels/2/Door" to="." method="_on_complete_level"]
