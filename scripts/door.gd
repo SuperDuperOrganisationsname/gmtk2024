@@ -2,7 +2,6 @@ extends Node2D
 
 signal complete_level
 
-@export var teleport: Vector2i = Vector2i(0, 0)
 @export var keys: Array[Node2D] = []
 
 var player_on_door: bool = false

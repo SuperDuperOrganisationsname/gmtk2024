@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://6j8yqwaj8xar"]
+[gd_scene load_steps=64 format=3 uid="uid://6j8yqwaj8xar"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cic6y"]
 [ext_resource type="Texture2D" uid="uid://cwaxhhu0hbqqc" path="res://assets/sprites/main_charakter.png" id="2_dfnnq"]
@@ -782,9 +782,14 @@ height = 28.0
 radius = 4.0
 height = 8.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hmuep"]
+radius = 9.0
+height = 24.0
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_cic6y")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -816,13 +821,13 @@ texture = ExtResource("2_dfnnq")
 hframes = 8
 vframes = 9
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="MapHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -10)
 shape = SubResource("CapsuleShape2D_p38ui")
 
 [node name="AttackHitbox" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 8
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
 position = Vector2(5, -24)
@@ -839,4 +844,13 @@ one_shot = true
 [node name="InputBuffer" type="Timer" parent="."]
 one_shot = true
 
+[node name="EnemyDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
+position = Vector2(1, -10)
+shape = SubResource("CapsuleShape2D_hmuep")
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="body_entered" from="EnemyDetection" to="." method="on_enemy_hit"]

@@ -21,6 +21,10 @@ var indicator_rotation = 0
 # checks if the last frame was in the air, to detect when you land
 var last_frame_in_air = false
 
+@export_group("Health")
+@export var max_health: int = 3
+@export var cur_health: int = 3
+
 @export_group("Timers")
 ## Time in seconds that a jump ist still performed after press
 @export var jump_buffer_time: float = 0.1
@@ -178,3 +182,6 @@ func _on_return_talisman() -> void:
 
 func _enable_player_movement(enable: bool) -> void:
 	can_move = enable
+
+func on_enemy_hit(body: Node2D) -> void:
+	cur_health -= 1
