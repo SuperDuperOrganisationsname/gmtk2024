@@ -343,5 +343,15 @@ func _on_player_throw_talisman(vector: Vector2) -> void:
 		return
 	
 	scale_item_at_player = false
-	$Talisman.set_axis_velocity(vector * THROW_SPEED)
+	var throw = vector * THROW_SPEED
+	if throw.y > 0:
+		throw.y /= 2
+	$Talisman.set_axis_velocity(throw)
 	$Talisman.is_flying = true
+	$Talisman.floor_counter = 0
+
+# Return Talisman to Player
+func _on_talisman_return_me() -> void:
+	if !scale_item_at_player:
+		scale_item_at_player = true
+		return_talisman.emit()
