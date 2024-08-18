@@ -2,6 +2,9 @@ extends Node2D
 
 signal return_talisman
 
+## used to change the scale type logo in the ui
+signal change_scale_type(int)
+
 # ---------- Export-Variables ---------- #
 
 # The TileMap: will be copied and disabled
@@ -206,10 +209,13 @@ func update_item_position():
 	match scale_type:
 		ScaleType.LEFT:
 			scaling.pos = pos + scaling.size
+			change_scale_type.emit(-1)	
 		ScaleType.RIGHT:
 			scaling.pos = pos - scaling.size
+			change_scale_type.emit(1)
 		ScaleType.MIDDLE:
 			scaling.pos = pos
+			change_scale_type.emit(0)
 	
 	
 
