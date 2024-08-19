@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://w137h0p71l8v"]
+
+[ext_resource type="Script" path="res://scripts/button_manager.gd" id="1_m6il6"]
+[ext_resource type="Texture2D" uid="uid://vllh2na8ky6t" path="res://assets/sprites/objects/button_circle.png" id="2_nb08e"]
+
+[node name="ButtonManager" type="Node2D"]
+script = ExtResource("1_m6il6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-120, -48)
+texture = ExtResource("2_nb08e")
+hframes = 2
+frame = 1
