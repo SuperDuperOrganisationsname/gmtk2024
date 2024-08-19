@@ -185,3 +185,7 @@ func _enable_player_movement(enable: bool) -> void:
 
 func on_enemy_hit(body: Node2D) -> void:
 	cur_health -= 1
+
+
+func _on_game_player_reset_health() -> void:
+	cur_health = max_health

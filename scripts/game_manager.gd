@@ -8,6 +8,8 @@ extends Node2D
 var levels = []
 var cur_level
 
+signal player_reset_health
+
 func _ready() -> void:
 	level_placeholder.queue_free()
 	
@@ -31,6 +33,7 @@ func load_level(level):
 
 func reset_level():
 	load_level(levels[current_level])
+	player_reset_health.emit()
 
 func _on_complete_level() -> void:
 	current_level += 1
