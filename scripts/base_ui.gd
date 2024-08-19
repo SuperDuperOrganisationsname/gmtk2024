@@ -16,11 +16,11 @@ var heart_frames = [3,2,6,10]
 func _process(delta: float) -> void:
 	match scale_mode:
 		ScaleMode.MIDDLE:
-			scale_mode_logo.frame = 3
+			scale_mode_logo.frame = 1
 		ScaleMode.RIGHT:
-			scale_mode_logo.frame = 7
+			scale_mode_logo.frame = 3
 		ScaleMode.LEFT:
-			scale_mode_logo.frame = 11
+			scale_mode_logo.frame = 5
 
 func _on_ui_change_scale_type(i: int) -> void:
 	if i == -1:
@@ -39,6 +39,5 @@ func _update_int_size(size: int) -> void:
 
 
 func _on_ui_change_health(i:int) -> void:
-	if i >= heart_frames.size() or i < 0:
-		return	
-	health_bar.frame = heart_frames[i]	
+	return
+	
