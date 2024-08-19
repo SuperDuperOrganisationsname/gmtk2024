@@ -50,14 +50,14 @@ grow_horizontal = 0
 script = ExtResource("3_pyo56")
 
 [node name="Base" type="Sprite2D" parent="BaseUi"]
-position = Vector2(-56, 48)
+position = Vector2(-55, 108)
 scale = Vector2(5, 5)
 texture = ExtResource("3_mn5xt")
 hframes = 2
 vframes = 3
 
 [node name="ScaleModeLogo" type="Sprite2D" parent="BaseUi"]
-position = Vector2(-56, 48)
+position = Vector2(-55, 108)
 scale = Vector2(5, 5)
 texture = ExtResource("3_mn5xt")
 hframes = 2
@@ -104,6 +104,24 @@ offset_right = -44.0
 offset_bottom = 63.0
 theme = ExtResource("1_3pjl8")
 text = "00:00:000"
+
+[node name="CurrentLevel" type="Label" parent="BaseUi"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 103.0
+offset_right = 23.0
+offset_bottom = 119.0
+theme = ExtResource("1_3pjl8")
+text = "14"
+
+[node name="MaxLevel" type="Label" parent="BaseUi"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 132.0
+offset_right = 23.0
+offset_bottom = 148.0
+theme = ExtResource("1_3pjl8")
+text = "25"
 
 [connection signal="change_health" from="." to="BaseUi" method="_on_ui_change_health"]
 [connection signal="change_scale_type" from="." to="BaseUi" method="_on_ui_change_scale_type"]
