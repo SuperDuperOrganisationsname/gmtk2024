@@ -43,13 +43,13 @@ signal int_size(size: int)
 const TILE_SIZE: int = 16
 
 # Speed for scaling (times delta_time)
-const SCALE_SPEED: float = 2.5
+const SCALE_SPEED: float = 3.0
 
 # Upper bound for stretching
 const MAX_SCALE: float = 5
 
 # If stretch is near 1, round it to 1
-const ROUND_THRESHOLD: float = 0.033
+const ROUND_THRESHOLD: float = 0.03
 
 # Speed of undoing a stretch
 const UNDO_SPEED: float = 3.0
@@ -118,6 +118,9 @@ var decrease_scale: bool = false
 # Is the scaling curently undoing?
 var is_undoing: bool = false
 
+# Undo Shrinking/Stretching?
+var undo_direction: int = 1
+
 # State of last frame
 var last_state: LastPosState
 
@@ -173,6 +176,10 @@ func _input(_event):
 	# Undo scaling
 	if Input.is_action_just_pressed("undo_scale"):
 		is_undoing = true
+		if scaling.scale < 1:
+			undo_direction = -1
+		else:
+			undo_direction = 1
 	
 	# Return Talisman to Player
 	if Input.is_action_just_released("throw") and !scale_item_at_player:
@@ -248,7 +255,8 @@ func scale(delta):
 
 # Undo scaling
 func undo_scaling(delta):
-	if scaling.scale == 1:
+	if scaling.scale == 1 or (undo_direction == 1 and scaling.scale < 1) or (undo_direction == -1 and scaling.scale > 1):
+		scaling.scale = 1
 		is_undoing = false
 	else:
 		if scaling.scale > 1:
@@ -394,3 +402,9 @@ func _on_talisman_return_me() -> void:
 	if !scale_item_at_player:
 		scale_item_at_player = true
 		return_talisman.emit()
+
+func reset_talisman_and_scale():
+	scaling.scale = 1.0
+	is_undoing = false
+	scale_item_at_player = true
+	return_talisman.emit()

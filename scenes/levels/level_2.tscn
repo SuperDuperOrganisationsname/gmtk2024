@@ -1,12 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://8vhxxo7bfa8k"]
+[gd_scene load_steps=4 format=3 uid="uid://8vhxxo7bfa8k"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_q0jfm"]
 [ext_resource type="PackedScene" uid="uid://dd5mci1q6iisk" path="res://scenes/door.tscn" id="2_1e2ru"]
+[ext_resource type="PackedScene" uid="uid://calioct03ysmc" path="res://scenes/static_key.tscn" id="3_qu4gs"]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_q0jfm")
+spawn_position = Vector2i(1700, -64)
 
-[node name="Door" parent="." instance=ExtResource("2_1e2ru")]
-position = Vector2(-80, 0)
+[node name="Door" parent="." node_paths=PackedStringArray("keys") instance=ExtResource("2_1e2ru")]
+position = Vector2(1768, -96)
+keys = [NodePath("Key1")]
+
+[node name="Key1" parent="Door" instance=ExtResource("3_qu4gs")]
+position = Vector2(80, 40)
 
 [connection signal="complete_level" from="Door" to="." method="_on_door_enter"]

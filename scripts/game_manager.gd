@@ -11,6 +11,7 @@ var cur_level
 var reset_next_frame: bool = false
 
 signal player_reset_health
+signal reset_scale
 
 func _ready() -> void:
 	level_placeholder.queue_free()
@@ -18,7 +19,7 @@ func _ready() -> void:
 	for i in range(num_levels):
 		levels.append(load_level_from_file(i + 1))
 	
-	load_level(levels[0])
+	load_level(levels[current_level])
 
 func load_level_from_file(level: int) -> PackedScene:
 	var path = "res://scenes/levels/level_{num}.tscn".format({"num": str(level)})
@@ -36,6 +37,7 @@ func load_level(level):
 func reset_level():
 	load_level(levels[current_level])
 	player_reset_health.emit()
+	reset_scale.emit()
 
 func _on_complete_level() -> void:
 	current_level += 1
