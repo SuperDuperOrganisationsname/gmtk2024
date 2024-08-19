@@ -26,7 +26,7 @@ offset_right = 250.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0745098, 0.00784314, 0.0313726, 0.623529)
+color = Color(0.0745098, 0.00784314, 0.0313726, 0.870588)
 
 [node name="CloseButton" type="Button" parent="ColorRect"]
 layout_mode = 1
@@ -38,5 +38,41 @@ offset_bottom = 24.0
 grow_horizontal = 0
 theme = ExtResource("1_26ujy")
 text = "X"
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.5
+offset_top = -210.0
+offset_right = 218.5
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_26ujy")
+text = "Move left with [A]
+Move right with [D]
+Jump with [Space]
+Fastfall with [S] while in the air
+Enter doors with [W]
+
+Attack with [J]
+Throw your Talisman with [K]
+or drop it with [Shift] + [K]
+and recall it with [K]
+Shink the area around the Talisman with [H]
+or stretch it with [L]
+Reset space with [U]
+Change the scaling mode with [-]
+Reset the level with [R]
+
+Open up the Pause menu with [Esc]
+Close this menu with [Q] or [Esc]
+"
+autowrap_mode = 2
+clip_text = true
 
 [connection signal="pressed" from="ColorRect/CloseButton" to="." method="_on_close_button_pressed"]
