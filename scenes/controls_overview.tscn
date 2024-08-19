@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://6j0fxn6kxm61"]
+[gd_scene load_steps=3 format=3 uid="uid://6j0fxn6kxm61"]
 
+[ext_resource type="Script" path="res://scripts/controls_overview.gd" id="1_1io5c"]
 [ext_resource type="Theme" uid="uid://dks16qglyxjf6" path="res://assets/default_ui_theme.tres" id="1_26ujy"]
 
 [node name="ControlsOverview" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1io5c")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -25,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0745098, 0.00784314, 0.0313726, 0.623529)
 
-[node name="Button" type="Button" parent="ColorRect"]
+[node name="CloseButton" type="Button" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -35,3 +37,5 @@ offset_bottom = 24.0
 grow_horizontal = 0
 theme = ExtResource("1_26ujy")
 text = "X"
+
+[connection signal="pressed" from="ColorRect/CloseButton" to="." method="_on_close_button_pressed"]
