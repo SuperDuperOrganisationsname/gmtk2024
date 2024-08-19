@@ -11,7 +11,6 @@ var heart_frames = [3,2,6,10]
 @export var scale_mode: ScaleMode = ScaleMode.MIDDLE
 
 @onready var scale_mode_logo: Sprite2D = $ScaleModeLogo
-@onready var health_bar: Sprite2D = $HealthBar
 
 func _process(delta: float) -> void:
 	match scale_mode:
