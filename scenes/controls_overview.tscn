@@ -38,6 +38,7 @@ offset_bottom = 24.0
 grow_horizontal = 0
 theme = ExtResource("1_26ujy")
 text = "X"
+flat = true
 
 [node name="Label" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -53,6 +54,7 @@ offset_bottom = 210.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_26ujy")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Move left with [A]
 Move right with [D]
 Jump with [Space]
