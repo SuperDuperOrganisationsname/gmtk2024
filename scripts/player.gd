@@ -2,6 +2,10 @@ extends CharacterBody2D
 
 signal throw_talisman(vector: Vector2)
 signal player_hit(cur_health: int)
+signal player_dead
+
+var death_timer: int = -1
+const DEATH_WAIT_TIMER: int = 30
 
 var can_throw: int = 0
 var can_move: bool = true
@@ -48,6 +52,12 @@ func _process(_delta: float) -> void:
 	last_frame_in_air = not is_on_floor()
 	if can_throw > 0 and can_throw < 3:
 		can_throw -= 1
+	if death_timer > 0:
+		death_timer -= 1
+	elif cur_health == 0:
+		player_dead.emit()
+		death_timer = -1
+		
 
 func _physics_process(delta):
 	var throw_pressed = Input.is_action_pressed("throw", true) and can_throw == 0
@@ -187,6 +197,10 @@ func _enable_player_movement(enable: bool) -> void:
 
 func on_enemy_hit(body: Node2D) -> void:
 	cur_health -= 1
+	if cur_health <= 0:
+		cur_health = 0
+		if death_timer == -1:
+			death_timer = DEATH_WAIT_TIMER
 	player_hit.emit(cur_health)	
 
 
