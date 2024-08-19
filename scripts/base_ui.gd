@@ -39,6 +39,6 @@ func _update_int_size(size: int) -> void:
 
 
 func _on_ui_change_health(i:int) -> void:
-	if i >= heart_frames.size():
+	if i >= heart_frames.size() or i < 0:
 		return	
 	health_bar.frame = heart_frames[i]	
