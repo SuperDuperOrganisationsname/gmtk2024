@@ -53,3 +53,7 @@ func _process(delta: float) -> void:
 
 func _on_killzone_entered(body: Node2D) -> void:
 	reset_next_frame = true
+
+
+func _on_pause_menu_pause_menu_reset_level() -> void:
+	reset_level()

@@ -1,5 +1,7 @@
 extends Control
 
+signal pause_menu_reset_level
+
 var pause_menu_active = false
 
 func toggle_pause_menu() -> void:
@@ -16,7 +18,8 @@ func _on_continue_button_pressed() -> void:
     toggle_pause_menu()
 
 func _on_reset_button_pressed() -> void:
-    pass # Replace with function body.
+    toggle_pause_menu()
+    pause_menu_reset_level.emit()
 
 func _on_controls_button_pressed() -> void:
     pass # Replace with function body.

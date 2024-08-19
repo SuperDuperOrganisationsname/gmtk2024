@@ -525,6 +525,7 @@ shape = SubResource("WorldBoundaryShape2D_36tkx")
 
 [connection signal="player_reset_health" from="." to="Player" method="_on_game_player_reset_health"]
 [connection signal="reset_scale" from="." to="Scaler" method="reset_talisman_and_scale"]
+[connection signal="pause_menu_reset_level" from="Ui/PauseMenu" to="." method="_on_pause_menu_pause_menu_reset_level"]
 [connection signal="player_dead" from="Player" to="." method="reset_level"]
 [connection signal="player_hit" from="Player" to="Ui" method="_on_player_player_hit"]
 [connection signal="throw_talisman" from="Player" to="Scaler" method="_on_player_throw_talisman"]
