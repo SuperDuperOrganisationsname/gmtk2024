@@ -5,10 +5,11 @@ signal player_hit(cur_health: int)
 signal player_dead
 
 var death_timer: int = -1
-const DEATH_WAIT_TIMER: int = 30
+const DEATH_WAIT_TIMER: int = 120
 
 var can_throw: int = 0
 var can_move: bool = true
+var update_anim: bool = true
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -48,7 +49,8 @@ func _ready() -> void:
 	player_hit.emit(cur_health)	
 	
 func _process(_delta: float) -> void:
-	update_animation()
+	if update_anim:
+		update_animation()
 	last_frame_in_air = not is_on_floor()
 	if can_throw > 0 and can_throw < 3:
 		can_throw -= 1
@@ -60,6 +62,9 @@ func _process(_delta: float) -> void:
 		
 
 func _physics_process(delta):
+	if animation_tree["parameters/conditions/death"]:
+		can_move = false
+		update_anim = false
 	var throw_pressed = Input.is_action_pressed("throw", true) and can_throw == 0
 	# Add the gravity.
 	if not is_on_floor():
@@ -148,6 +153,7 @@ func update_animation():
 		animation_tree["parameters/FallUp/blend_position"] = direction
 		animation_tree["parameters/JumpPeak/blend_position"] = direction
 		animation_tree["parameters/FallDown/blend_position"] = direction
+		animation_tree["parameters/Death/blend_position"] = direction
 	
 	# jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor() and can_move:
@@ -200,10 +206,23 @@ func on_enemy_hit(body: Node2D) -> void:
 	if cur_health <= 0:
 		cur_health = 0
 		if death_timer == -1:
+			# reset player animations and play death animation	
+			animation_tree["parameters/conditions/attack"] = false 
+			animation_tree["parameters/conditions/run"] = false 
+			animation_tree["parameters/conditions/idle"] = false 
+			animation_tree["parameters/conditions/jump"] = false 
+			animation_tree["parameters/conditions/fall_up"] = false 
+			animation_tree["parameters/conditions/jump_peak"] = false 
+			animation_tree["parameters/conditions/fall_down"] = false 
+			animation_tree["parameters/conditions/death"] = true 
+			
 			death_timer = DEATH_WAIT_TIMER
 	player_hit.emit(cur_health)	
 
 
 func _on_game_player_reset_health() -> void:
 	cur_health = max_health
+	animation_tree["parameters/conditions/death"] = false 
+	update_anim = true	
+	can_move = true
 	player_hit.emit(cur_health)
