@@ -225,6 +225,7 @@ func update_item_position():
 		$Talisman.new_position = new_pos
 		$Talisman.update_position = true
 		$Talisman.set_axis_velocity(Vector2(0, 0))
+		$Talisman.linear_velocity = Vector2(0, 0)
 	else:
 		$Talisman.visible = true
 	var pos = $Talisman.position.x / 16 as int

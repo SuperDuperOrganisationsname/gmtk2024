@@ -8,5 +8,5 @@ func _process(_delta: float) -> void:
 func reset_button():
 	pressed = false
 
-func _on_area_2d_body_entered(area: Area2D) -> void:
+func _on_area_2d_body_entered(_coll) -> void:
 	pressed = true

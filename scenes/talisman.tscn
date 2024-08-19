@@ -8,6 +8,7 @@ radius = 3.0
 height = 8.0
 
 [node name="Talisman" type="RigidBody2D"]
+collision_layer = 32
 lock_rotation = true
 script = ExtResource("1_cip6f")
 
