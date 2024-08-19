@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://8tdydcje4fe4"]
+[gd_scene load_steps=22 format=4 uid="uid://8tdydcje4fe4"]
 
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g7thr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://sqya6is71pbm" path="res://scenes/squish_check.tscn" id="3_e7q4b"]
 [ext_resource type="PackedScene" uid="uid://b5gm1h3t1vcbt" path="res://scenes/scaling_tilemap.tscn" id="3_yt2vt"]
 [ext_resource type="Texture2D" uid="uid://b35r0lq84s0is" path="res://assets/sprites/tilesets/clean_tileset_red.png" id="4_1x3xs"]
+[ext_resource type="PackedScene" uid="uid://6j0fxn6kxm61" path="res://scenes/controls_overview.tscn" id="4_dde2o"]
 [ext_resource type="Texture2D" uid="uid://chun3iubya1vb" path="res://assets/sprites/tilesets/clean_tileset_blue.png" id="5_lhdsm"]
 [ext_resource type="PackedScene" uid="uid://bvyhfis4svi1u" path="res://scenes/levels/level_4.tscn" id="11_0iqj7"]
 [ext_resource type="PackedScene" uid="uid://cl2ra10142mr5" path="res://scenes/levels/level_1.tscn" id="12_sgkjb"]
@@ -464,6 +465,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+
+[node name="ControlsOverview" parent="Ui" instance=ExtResource("4_dde2o")]
 
 [node name="Player" parent="." instance=ExtResource("1_voq50")]
 position = Vector2(8, 48)
