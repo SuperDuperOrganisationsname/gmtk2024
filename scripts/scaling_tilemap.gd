@@ -267,6 +267,8 @@ func undo_scaling(delta):
 
 # Update scaling depending on input
 func update_scaling(delta):
+	if scale_item_at_player:
+		return
 	scaling.scale += (increase_scale as int - (decrease_scale as int)) * delta * SCALE_SPEED
 	scaling.scale = clamp(scaling.scale, 0, MAX_SCALE)
 
