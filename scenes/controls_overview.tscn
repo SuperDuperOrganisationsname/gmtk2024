@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://dks16qglyxjf6" path="res://assets/default_ui_theme.tres" id="1_26ujy"]
 
 [node name="ControlsOverview" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
