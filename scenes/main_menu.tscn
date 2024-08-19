@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk04ja1noskqf"]
+[gd_scene load_steps=4 format=3 uid="uid://bk04ja1noskqf"]
 
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_8xokp"]
 [ext_resource type="FontFile" uid="uid://btdofslwyefw3" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_j2vn5"]
 [ext_resource type="Texture2D" uid="uid://dinuu33cvjeww" path="res://assets/sprites/ui/basic_button.png" id="1_ywpkd"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8xokp")
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
@@ -77,3 +79,7 @@ text_overrun_behavior = 1
 z_index = -1
 position = Vector2(32, 16)
 texture = ExtResource("1_ywpkd")
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
