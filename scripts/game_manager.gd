@@ -29,6 +29,13 @@ func load_level(level):
 	player.position = instance.spawn_position
 	cur_level = instance
 
+func reset_level():
+	load_level(levels[current_level])
+
 func _on_complete_level() -> void:
 	current_level += 1
-	load_level(levels[current_level])
+	reset_level()
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("reset_level"):
+		reset_level()
