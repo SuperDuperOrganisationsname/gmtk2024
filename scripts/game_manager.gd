@@ -8,6 +8,8 @@ extends Node2D
 var levels = []
 var cur_level
 
+var reset_next_frame: bool = false
+
 signal player_reset_health
 
 func _ready() -> void:
@@ -41,4 +43,11 @@ func _on_complete_level() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("reset_level"):
+		reset_next_frame = true
+	
+	if reset_next_frame:
+		reset_next_frame = false
 		reset_level()
+
+func _on_killzone_entered(body: Node2D) -> void:
+	reset_next_frame = true
