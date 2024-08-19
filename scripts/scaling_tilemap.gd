@@ -140,7 +140,7 @@ func _ready():
 
 	# Instantiate Scaling
 	scaling  = Scaling.new()
-	scaling.size = 3
+	scaling.size = 2
 	scaling.pos = 0
 	scaling.scale = 1
 	
