@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://8tdydcje4fe4"]
+[gd_scene load_steps=40 format=4 uid="uid://8tdydcje4fe4"]
 
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g7thr"]
@@ -23,6 +23,17 @@
 [ext_resource type="PackedScene" uid="uid://cjg3jow2j2n6q" path="res://scenes/levels/level_12.tscn" id="21_ycc04"]
 [ext_resource type="PackedScene" uid="uid://v5d1h8rrwcft" path="res://scenes/levels/level_13.tscn" id="22_1evay"]
 [ext_resource type="PackedScene" uid="uid://b3p17xa3ey33i" path="res://scenes/levels/level_14.tscn" id="23_gsilw"]
+[ext_resource type="PackedScene" uid="uid://bud22cq0f142n" path="res://scenes/levels/level_15.tscn" id="24_g5x5n"]
+[ext_resource type="PackedScene" uid="uid://cxs75lf1hec7n" path="res://scenes/levels/level_16.tscn" id="25_41w31"]
+[ext_resource type="PackedScene" uid="uid://ba2yso5u2nhaq" path="res://scenes/levels/level_17.tscn" id="26_crdvp"]
+[ext_resource type="PackedScene" uid="uid://dox636v6fik0h" path="res://scenes/levels/level_18.tscn" id="27_iu36c"]
+[ext_resource type="PackedScene" uid="uid://bccx1bx262qw" path="res://scenes/levels/level_19.tscn" id="28_m44va"]
+[ext_resource type="PackedScene" uid="uid://dgvm22i5714b8" path="res://scenes/levels/level_20.tscn" id="29_pfcxv"]
+[ext_resource type="PackedScene" uid="uid://djdi5xy2hcqiy" path="res://scenes/levels/level_21.tscn" id="30_2qond"]
+[ext_resource type="PackedScene" uid="uid://pmnmaojq2r0u" path="res://scenes/levels/level_22.tscn" id="31_733ja"]
+[ext_resource type="PackedScene" uid="uid://cq6itt6utq11m" path="res://scenes/levels/level_23.tscn" id="32_vjy3j"]
+[ext_resource type="PackedScene" uid="uid://dyb17cdf0roqr" path="res://scenes/levels/level_24.tscn" id="33_ev883"]
+[ext_resource type="PackedScene" uid="uid://dxoiusmerypbc" path="res://scenes/levels/level_25.tscn" id="34_6i2rv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sage3"]
 texture = ExtResource("5_lhdsm")
@@ -540,6 +551,28 @@ static_tilemaps = [NodePath("../Tilemaps/Background"), NodePath("../Tilemaps/For
 [node name="Level13" parent="Levels" instance=ExtResource("22_1evay")]
 
 [node name="Level14" parent="Levels" instance=ExtResource("23_gsilw")]
+
+[node name="Level15" parent="Levels" instance=ExtResource("24_g5x5n")]
+
+[node name="Level16" parent="Levels" instance=ExtResource("25_41w31")]
+
+[node name="Level17" parent="Levels" instance=ExtResource("26_crdvp")]
+
+[node name="Level18" parent="Levels" instance=ExtResource("27_iu36c")]
+
+[node name="Level19" parent="Levels" instance=ExtResource("28_m44va")]
+
+[node name="Level20" parent="Levels" instance=ExtResource("29_pfcxv")]
+
+[node name="Level21" parent="Levels" instance=ExtResource("30_2qond")]
+
+[node name="Level22" parent="Levels" instance=ExtResource("31_733ja")]
+
+[node name="Level23" parent="Levels" instance=ExtResource("32_vjy3j")]
+
+[node name="Level24" parent="Levels" instance=ExtResource("33_ev883")]
+
+[node name="Level25" parent="Levels" instance=ExtResource("34_6i2rv")]
 
 [node name="Killzone" type="Area2D" parent="."]
 position = Vector2(0, 180)

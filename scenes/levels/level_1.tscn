@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cl2ra10142mr5"]
+[gd_scene load_steps=6 format=3 uid="uid://cl2ra10142mr5"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_opsxf"]
 [ext_resource type="PackedScene" uid="uid://dd5mci1q6iisk" path="res://scenes/door.tscn" id="2_8l3qc"]
 [ext_resource type="PackedScene" uid="uid://calioct03ysmc" path="res://scenes/static_key.tscn" id="3_rkay6"]
 [ext_resource type="PackedScene" uid="uid://w137h0p71l8v" path="res://scenes/button_manager.tscn" id="4_t04vu"]
 [ext_resource type="PackedScene" uid="uid://bou6es017naee" path="res://scenes/button.tscn" id="4_yidj5"]
-[ext_resource type="PackedScene" uid="uid://b2irioi3olfnc" path="res://scenes/enemies/enemy.tscn" id="5_nlf0i"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_opsxf")
@@ -28,10 +27,5 @@ position = Vector2(-336, -8)
 
 [node name="StaticKey" parent="Door" instance=ExtResource("3_rkay6")]
 position = Vector2(-280, -13)
-
-[node name="Enemy" parent="." instance=ExtResource("5_nlf0i")]
-position = Vector2(-227, 7)
-collision_layer = 4
-collision_mask = 15
 
 [connection signal="complete_level" from="Door" to="." method="_on_door_enter"]
