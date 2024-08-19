@@ -10,9 +10,12 @@ config_version=5
 
 [application]
 
-config/name="gmtk2024"
+config/name="Cubistic Distortion"
+config/description="A game about bending space to you will."
+config/version="1.0.0"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://boot_splash.png"
 config/icon="res://icon.svg"
 
 [autoload]
