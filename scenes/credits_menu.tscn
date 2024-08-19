@@ -65,5 +65,6 @@ offset_bottom = -5.0
 grow_vertical = 0
 theme = ExtResource("1_i76kd")
 text = "Back to Main Menu"
+flat = true
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]

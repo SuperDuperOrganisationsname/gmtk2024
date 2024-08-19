@@ -42,21 +42,25 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("1_bb0cp")
 text = "Continue"
+flat = true
 
 [node name="ResetButton" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bb0cp")
 text = "Reset"
+flat = true
 
 [node name="ControlsButton" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bb0cp")
 text = "Controls"
+flat = true
 
 [node name="QuitButton" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bb0cp")
 text = "Quit"
+flat = true
 
 [connection signal="pressed" from="ColorRect/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
