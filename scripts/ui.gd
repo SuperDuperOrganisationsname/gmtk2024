@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal change_scale_type(int)
+signal change_health(i: int)
 
 signal int_scale(scale: float)
 signal int_size(size: int)
@@ -15,3 +16,7 @@ func _get_int_scale(scale: float) -> void:
 
 func _get_int_size(size: int) -> void:
 	int_size.emit(size)
+
+
+func _on_player_player_hit(cur_health:int) -> void:
+	change_health.emit(cur_health)

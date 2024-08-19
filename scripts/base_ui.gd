@@ -6,9 +6,12 @@ enum ScaleMode {
 	LEFT
 }
 
+var heart_frames = [3,2,6,10]
+
 @export var scale_mode: ScaleMode = ScaleMode.MIDDLE
 
 @onready var scale_mode_logo: Sprite2D = $ScaleModeLogo
+@onready var health_bar: Sprite2D = $HealthBar
 
 func _process(delta: float) -> void:
 	match scale_mode:
@@ -33,3 +36,9 @@ func _update_int_scale(scale: float) -> void:
 
 func _update_int_size(size: int) -> void:
 	$Interval.text = str(size)
+
+
+func _on_ui_change_health(i:int) -> void:
+	if i >= heart_frames.size():
+		return	
+	health_bar.frame = heart_frames[i]	

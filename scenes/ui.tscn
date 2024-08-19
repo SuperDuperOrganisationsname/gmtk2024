@@ -62,12 +62,6 @@ hframes = 4
 vframes = 3
 frame = 3
 
-[node name="HealthBar" type="TextureProgressBar" parent="BaseUi"]
-layout_mode = 0
-offset_left = -1112.0
-offset_right = -1072.0
-offset_bottom = 40.0
-
 [node name="Scale" type="Label" parent="BaseUi"]
 layout_mode = 0
 offset_left = -13.0
@@ -92,6 +86,15 @@ horizontal_alignment = 1
 max_lines_visible = 1
 visible_characters = 2
 
+[node name="HealthBar" type="Sprite2D" parent="BaseUi"]
+position = Vector2(-56, 48)
+scale = Vector2(5, 5)
+texture = ExtResource("3_mn5xt")
+hframes = 4
+vframes = 3
+frame = 3
+
+[connection signal="change_health" from="." to="BaseUi" method="_on_ui_change_health"]
 [connection signal="change_scale_type" from="." to="BaseUi" method="_on_ui_change_scale_type"]
 [connection signal="int_scale" from="." to="BaseUi" method="_update_int_scale"]
 [connection signal="int_size" from="." to="BaseUi" method="_update_int_size"]

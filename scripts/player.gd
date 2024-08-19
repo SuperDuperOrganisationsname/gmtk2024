@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal throw_talisman(vector: Vector2)
+signal player_hit(cur_health: int)
 
 var can_throw: int = 0
 var can_move: bool = true
@@ -40,6 +41,7 @@ var last_frame_in_air = false
 func _ready() -> void:
 	animation_tree.active = true
 	throw_indicator.visible = false
+	player_hit.emit(cur_health)	
 	
 func _process(_delta: float) -> void:
 	update_animation()
@@ -185,7 +187,9 @@ func _enable_player_movement(enable: bool) -> void:
 
 func on_enemy_hit(body: Node2D) -> void:
 	cur_health -= 1
+	player_hit.emit(cur_health)	
 
 
 func _on_game_player_reset_health() -> void:
 	cur_health = max_health
+	player_hit.emit(cur_health)
