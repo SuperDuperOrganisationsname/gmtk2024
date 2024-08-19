@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal toggle_pause_menu
 signal throw_talisman(vector: Vector2)
 signal player_hit(cur_health: int)
 signal player_dead
@@ -49,6 +50,9 @@ func _ready() -> void:
 	player_hit.emit(cur_health)	
 	
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("open_pause_menu"):
+		toggle_pause_menu.emit()
+
 	if update_anim:
 		update_animation()
 	last_frame_in_air = not is_on_floor()

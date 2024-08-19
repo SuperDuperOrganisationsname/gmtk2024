@@ -1,15 +1,16 @@
-[gd_scene load_steps=18 format=4 uid="uid://8tdydcje4fe4"]
+[gd_scene load_steps=19 format=4 uid="uid://8tdydcje4fe4"]
 
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g7thr"]
 [ext_resource type="PackedScene" uid="uid://6j8yqwaj8xar" path="res://scenes/player.tscn" id="1_voq50"]
+[ext_resource type="PackedScene" uid="uid://crtdkcfkvb8sy" path="res://scenes/pause_menu.tscn" id="2_5u4hp"]
 [ext_resource type="PackedScene" uid="uid://sqya6is71pbm" path="res://scenes/squish_check.tscn" id="3_e7q4b"]
 [ext_resource type="PackedScene" uid="uid://b5gm1h3t1vcbt" path="res://scenes/scaling_tilemap.tscn" id="3_yt2vt"]
 [ext_resource type="Texture2D" uid="uid://b35r0lq84s0is" path="res://assets/sprites/tilesets/clean_tileset_red.png" id="4_1x3xs"]
 [ext_resource type="Texture2D" uid="uid://chun3iubya1vb" path="res://assets/sprites/tilesets/clean_tileset_blue.png" id="5_lhdsm"]
-[ext_resource type="PackedScene" uid="uid://bvyhfis4svi1u" path="res://scenes/levels/level_4.tscn" id="11_0iqj7"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_4.tscn" id="11_0iqj7"]
 [ext_resource type="PackedScene" uid="uid://cl2ra10142mr5" path="res://scenes/levels/level_1.tscn" id="12_sgkjb"]
-[ext_resource type="PackedScene" uid="uid://843v4mwmw8br" path="res://scenes/levels/level_5.tscn" id="12_v0sdl"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_5.tscn" id="12_v0sdl"]
 [ext_resource type="PackedScene" uid="uid://8vhxxo7bfa8k" path="res://scenes/levels/level_2.tscn" id="13_vtj5m"]
 [ext_resource type="PackedScene" uid="uid://cgij3jtf1ikwf" path="res://scenes/levels/level_3.tscn" id="14_hsey3"]
 
@@ -453,6 +454,14 @@ level_placeholder = NodePath("Levels")
 
 [node name="Ui" parent="." instance=ExtResource("1_88vku")]
 
+[node name="PauseMenu" parent="Ui" instance=ExtResource("2_5u4hp")]
+z_index = 10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
 [node name="Player" parent="." instance=ExtResource("1_voq50")]
 position = Vector2(8, 48)
 
@@ -512,6 +521,7 @@ shape = SubResource("WorldBoundaryShape2D_36tkx")
 [connection signal="player_dead" from="Player" to="." method="reset_level"]
 [connection signal="player_hit" from="Player" to="Ui" method="_on_player_player_hit"]
 [connection signal="throw_talisman" from="Player" to="Scaler" method="_on_player_throw_talisman"]
+[connection signal="toggle_pause_menu" from="Player" to="Ui/PauseMenu" method="_on_player_toggle_pause_menu"]
 [connection signal="change_scale_type" from="Scaler" to="Ui" method="_on_scaling_tilemap_change_scale_type"]
 [connection signal="int_scale" from="Scaler" to="Ui" method="_get_int_scale"]
 [connection signal="int_size" from="Scaler" to="Ui" method="_get_int_size"]
