@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://yxsxby4x5wjv"]
+
+[ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_c05as"]
+[ext_resource type="Texture2D" uid="uid://chhreu8i7bak0" path="res://assets/sprites/ui/speech_bubbles.png" id="1_cb7pd"]
+[ext_resource type="Theme" uid="uid://dks16qglyxjf6" path="res://assets/default_ui_theme.tres" id="2_7aq05"]
+
+[node name="IntroCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c05as")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.00784314, 0.0313726, 1)
+
+[node name="SpeechBubbleLeft" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpeechBubbleLeft"]
+position = Vector2(452, 163)
+scale = Vector2(12.7266, 12.7266)
+texture = ExtResource("1_cb7pd")
+hframes = 3
+
+[node name="Label" type="Label" parent="SpeechBubbleLeft"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = -193.0
+offset_right = 414.0
+offset_bottom = 48.0
+theme = ExtResource("2_7aq05")
+theme_override_colors/font_color = Color(1, 0.509804, 0.454902, 1)
+text = "Jo"
+autowrap_mode = 2
+clip_text = true
+
+[node name="SpeechBubbleRight" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 655.0
+offset_top = -20.0
+offset_right = 695.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpeechBubbleRight"]
+position = Vector2(44, 163)
+scale = Vector2(12.7266, 12.7266)
+texture = ExtResource("1_cb7pd")
+flip_h = true
+hframes = 3
+
+[node name="Label" type="Label" parent="SpeechBubbleRight"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = -193.0
+offset_right = 414.0
+offset_bottom = 48.0
+theme = ExtResource("2_7aq05")
+theme_override_colors/font_color = Color(1, 0.509804, 0.454902, 1)
+text = "Jo"
+autowrap_mode = 2
+clip_text = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_7aq05")
+theme_override_colors/font_color = Color(1, 0.509804, 0.454902, 1)
+text = "Press [Space] or [Enter] to continue or [Esc] to skip"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
