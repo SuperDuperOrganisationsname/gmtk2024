@@ -5,7 +5,10 @@
 
 [node name="Level12" type="Node2D"]
 script = ExtResource("1_dyh6c")
+spawn_position = Vector2i(12392, -108)
 
 [node name="Door" parent="." instance=ExtResource("2_xtmkf")]
+z_index = -1
+position = Vector2(12392, -48)
 
 [connection signal="complete_level" from="Door" to="." method="_on_door_enter"]
