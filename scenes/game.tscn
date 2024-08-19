@@ -460,7 +460,6 @@ sources/0 = SubResource("TileSetAtlasSource_q5sna")
 script = ExtResource("1_g7thr")
 num_levels = 14
 player = NodePath("Player")
-current_level = 13
 level_placeholder = NodePath("Levels")
 
 [node name="Ui" parent="." instance=ExtResource("1_88vku")]
