@@ -16,13 +16,13 @@
 [ext_resource type="PackedScene" uid="uid://bkxw0aonjasyv" path="res://scenes/levels/level_6.tscn" id="14_cyqko"]
 [ext_resource type="PackedScene" uid="uid://cgij3jtf1ikwf" path="res://scenes/levels/level_3.tscn" id="14_hsey3"]
 [ext_resource type="PackedScene" uid="uid://byx1k25tx0d6o" path="res://scenes/levels/level_7.tscn" id="15_ngjfr"]
-[ext_resource type="PackedScene" uid="uid://cwdjkkok72kgr" path="res://scenes/levels/level_8.tscn" id="17_wdor4"]
-[ext_resource type="PackedScene" uid="uid://ynicgvukvo4n" path="res://scenes/levels/level_9.tscn" id="18_mb6tf"]
-[ext_resource type="PackedScene" uid="uid://dyfk2gx4mjx5f" path="res://scenes/levels/level_10.tscn" id="19_hv1fq"]
-[ext_resource type="PackedScene" uid="uid://cd3yrrqkdw5as" path="res://scenes/levels/level_11.tscn" id="20_kgan2"]
-[ext_resource type="PackedScene" uid="uid://cjg3jow2j2n6q" path="res://scenes/levels/level_12.tscn" id="21_ycc04"]
-[ext_resource type="PackedScene" uid="uid://v5d1h8rrwcft" path="res://scenes/levels/level_13.tscn" id="22_1evay"]
-[ext_resource type="PackedScene" uid="uid://b3p17xa3ey33i" path="res://scenes/levels/level_14.tscn" id="23_gsilw"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_8.tscn" id="17_wdor4"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_9.tscn" id="18_mb6tf"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_10.tscn" id="19_hv1fq"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_11.tscn" id="20_kgan2"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_12.tscn" id="21_ycc04"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_13.tscn" id="22_1evay"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_14.tscn" id="23_gsilw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sage3"]
 texture = ExtResource("5_lhdsm")
@@ -550,6 +550,7 @@ shape = SubResource("WorldBoundaryShape2D_36tkx")
 
 [connection signal="player_reset_health" from="." to="Player" method="_on_game_player_reset_health"]
 [connection signal="reset_scale" from="." to="Scaler" method="reset_talisman_and_scale"]
+[connection signal="pause_menu_open_controls" from="Ui/PauseMenu" to="Ui/ControlsOverview" method="_on_pause_menu_pause_menu_open_controls"]
 [connection signal="pause_menu_reset_level" from="Ui/PauseMenu" to="." method="_on_pause_menu_pause_menu_reset_level"]
 [connection signal="player_dead" from="Player" to="." method="reset_level"]
 [connection signal="player_hit" from="Player" to="Ui" method="_on_player_player_hit"]

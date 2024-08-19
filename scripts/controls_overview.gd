@@ -11,3 +11,6 @@ func toggle_controls_menu() -> void:
 
 func _on_close_button_pressed() -> void:
     toggle_controls_menu()
+
+func _on_pause_menu_pause_menu_open_controls() -> void:
+    pass

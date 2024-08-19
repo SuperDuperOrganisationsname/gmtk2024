@@ -1,6 +1,7 @@
 extends Control
 
 signal pause_menu_reset_level
+signal pause_menu_open_controls
 
 var pause_menu_active = false
 
@@ -27,7 +28,7 @@ func _on_reset_button_pressed() -> void:
 	pause_menu_reset_level.emit()
 
 func _on_controls_button_pressed() -> void:
-	pass # Replace with function body.
+	pause_menu_open_controls.emit()
 
 func _on_quit_button_pressed() -> void:
 	toggle_pause_menu()
