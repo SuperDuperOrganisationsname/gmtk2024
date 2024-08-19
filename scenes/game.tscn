@@ -474,6 +474,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 
 [node name="ControlsOverview" parent="Ui" instance=ExtResource("4_dde2o")]
+z_index = 11
 
 [node name="Player" parent="." instance=ExtResource("1_voq50")]
 position = Vector2(8, 48)
