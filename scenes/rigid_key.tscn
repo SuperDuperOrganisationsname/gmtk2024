@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxm8i35mcw3vt"]
 
 [ext_resource type="Script" path="res://scripts/key.gd" id="1_26tx6"]
-[ext_resource type="Texture2D" uid="uid://d3xdoyqgljqqd" path="res://assets/sprites/objects/key_blue.png" id="1_cn4sy"]
+[ext_resource type="Texture2D" uid="uid://cl137yslq20o5" path="res://assets/sprites/objects/key_red.png" id="2_a214k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6s33t"]
 radius = 4.0
@@ -18,7 +18,7 @@ lock_rotation = true
 script = ExtResource("1_26tx6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_cn4sy")
+texture = ExtResource("2_a214k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

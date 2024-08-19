@@ -1,19 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwdjkkok72kgr"]
+[gd_scene load_steps=5 format=3 uid="uid://cwdjkkok72kgr"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_i0tmc"]
 [ext_resource type="PackedScene" uid="uid://dd5mci1q6iisk" path="res://scenes/door.tscn" id="2_ueu0u"]
-[ext_resource type="PackedScene" uid="uid://calioct03ysmc" path="res://scenes/static_key.tscn" id="3_8o866"]
+[ext_resource type="PackedScene" uid="uid://cxm8i35mcw3vt" path="res://scenes/rigid_key.tscn" id="3_u1ux7"]
+[ext_resource type="Texture2D" uid="uid://cl137yslq20o5" path="res://assets/sprites/objects/key_red.png" id="4_epfpu"]
 
 [node name="Level8" type="Node2D"]
 script = ExtResource("1_i0tmc")
-spawn_position = Vector2i(7640, -108)
+spawn_position = Vector2i(5720, -2432)
 
 [node name="Door" parent="." node_paths=PackedStringArray("keys") instance=ExtResource("2_ueu0u")]
-position = Vector2(7800, -112)
-keys = [NodePath("Key")]
+position = Vector2(5832, -2464)
+keys = [NodePath("RigidKey")]
 
-[node name="Key" parent="Door" instance=ExtResource("3_8o866")]
-z_index = -1
-position = Vector2(-256, 8)
+[node name="RigidKey" parent="Door" instance=ExtResource("3_u1ux7")]
+position = Vector2(-80, -56)
+
+[node name="Sprite2D" parent="Door/RigidKey" index="0"]
+texture = ExtResource("4_epfpu")
 
 [connection signal="complete_level" from="Door" to="." method="_on_door_enter"]
+
+[editable path="Door/RigidKey"]
