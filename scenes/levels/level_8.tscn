@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwdjkkok72kgr"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_i0tmc"]
+[ext_resource type="PackedScene" uid="uid://dd5mci1q6iisk" path="res://scenes/door.tscn" id="2_ueu0u"]
+
+[node name="Level8" type="Node2D"]
+script = ExtResource("1_i0tmc")
+spawn_position = Vector2i(7512, -108)
+
+[node name="Door" parent="." instance=ExtResource("2_ueu0u")]
+position = Vector2(7800, -112)
+
+[connection signal="complete_level" from="Door" to="." method="_on_door_enter"]

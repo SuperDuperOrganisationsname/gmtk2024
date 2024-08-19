@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd3yrrqkdw5as"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_ij8uy"]
+[ext_resource type="PackedScene" uid="uid://dd5mci1q6iisk" path="res://scenes/door.tscn" id="2_ifivg"]
+
+[node name="Level11" type="Node2D"]
+script = ExtResource("1_ij8uy")
+
+[node name="Door" parent="." instance=ExtResource("2_ifivg")]
+
+[connection signal="complete_level" from="Door" to="." method="_on_door_enter"]
