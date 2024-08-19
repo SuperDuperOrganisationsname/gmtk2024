@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Cubistic Distortion"
+config/name="Cubist Distortion"
 config/description="A game about bending space to you will."
 config/version="1.0.0"
 run/main_scene="res://scenes/main_menu.tscn"

@@ -345,7 +345,7 @@ grow_vertical = 2
 scale = Vector2(3, 3)
 theme = ExtResource("2_bn6x1")
 theme_override_colors/font_color = Color(1, 0.509804, 0.454902, 1)
-text = "Cubic Distortion"
+text = "Cubist Distortion"
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
