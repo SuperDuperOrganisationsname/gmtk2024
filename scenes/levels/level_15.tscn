@@ -1,28 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bud22cq0f142n"]
+[gd_scene load_steps=3 format=3 uid="uid://bud22cq0f142n"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_0qdem"]
 [ext_resource type="PackedScene" uid="uid://dd5mci1q6iisk" path="res://scenes/door.tscn" id="2_brl5c"]
-[ext_resource type="PackedScene" uid="uid://w137h0p71l8v" path="res://scenes/button_manager.tscn" id="3_kqbvx"]
-[ext_resource type="PackedScene" uid="uid://bou6es017naee" path="res://scenes/button.tscn" id="4_x37c6"]
-[ext_resource type="PackedScene" uid="uid://calioct03ysmc" path="res://scenes/static_key.tscn" id="5_26tdq"]
 
 [node name="Level15" type="Node2D"]
 script = ExtResource("1_0qdem")
-spawn_position = Vector2i(14856, -108)
+spawn_position = Vector2i(10152, -2432)
 
-[node name="Door" parent="." node_paths=PackedStringArray("keys") instance=ExtResource("2_brl5c")]
-position = Vector2(14712, -112)
-keys = [NodePath("Key")]
-
-[node name="ButtonManager" parent="Door" node_paths=PackedStringArray("buttons", "key") instance=ExtResource("3_kqbvx")]
-position = Vector2(408, 40)
-buttons = [NodePath("Button")]
-key = NodePath("../Key")
-
-[node name="Button" parent="Door/ButtonManager" instance=ExtResource("4_x37c6")]
-position = Vector2(-120, -32)
-
-[node name="Key" parent="Door" instance=ExtResource("5_26tdq")]
-position = Vector2(144, 8)
+[node name="Door" parent="." instance=ExtResource("2_brl5c")]
+position = Vector2(10376, -2544)
 
 [connection signal="complete_level" from="Door" to="." method="_on_door_enter"]

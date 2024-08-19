@@ -8,24 +8,27 @@
 
 [node name="Level16" type="Node2D"]
 script = ExtResource("1_divbf")
-spawn_position = Vector2i(15576, -108)
+spawn_position = Vector2i(11032, -2432)
 
 [node name="Door" parent="." node_paths=PackedStringArray("keys") instance=ExtResource("2_asnas")]
-position = Vector2(15576, -112)
-keys = [NodePath("Key")]
+position = Vector2(10952, -2512)
+keys = [NodePath("StaticKey"), NodePath("StaticKey2")]
 
 [node name="ButtonManager" parent="Door" node_paths=PackedStringArray("buttons", "key") instance=ExtResource("3_ipaw0")]
-position = Vector2(120, -8)
+position = Vector2(248, 72)
 buttons = [NodePath("Button"), NodePath("Button2")]
-key = NodePath("../Key")
+key = NodePath("../StaticKey")
 
 [node name="Button" parent="Door/ButtonManager" instance=ExtResource("4_qu7bs")]
-position = Vector2(24, 16)
+position = Vector2(136, -32)
 
 [node name="Button2" parent="Door/ButtonManager" instance=ExtResource("4_qu7bs")]
-position = Vector2(-264, 16)
+position = Vector2(216, -64)
 
-[node name="Key" parent="Door" instance=ExtResource("5_o176s")]
-position = Vector2(0, -32)
+[node name="StaticKey" parent="Door" instance=ExtResource("5_o176s")]
+position = Vector2(128, 56)
+
+[node name="StaticKey2" parent="Door" instance=ExtResource("5_o176s")]
+position = Vector2(448, 88)
 
 [connection signal="complete_level" from="Door" to="." method="_on_door_enter"]

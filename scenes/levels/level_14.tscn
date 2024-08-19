@@ -6,13 +6,17 @@
 
 [node name="Level14" type="Node2D"]
 script = ExtResource("1_ovylj")
-spawn_position = Vector2i(14072, -108)
+spawn_position = Vector2i(9656, -2432)
 
 [node name="Door" parent="." node_paths=PackedStringArray("keys") instance=ExtResource("2_wn5ya")]
-position = Vector2(14072, -352)
-keys = [NodePath("Key")]
+z_index = -1
+position = Vector2(9656, -2384)
+keys = [NodePath("StaticKey"), NodePath("StaticKey2")]
 
-[node name="Key" parent="Door" instance=ExtResource("3_6dfci")]
-position = Vector2(0, 136)
+[node name="StaticKey" parent="Door" instance=ExtResource("3_6dfci")]
+position = Vector2(32, 8)
+
+[node name="StaticKey2" parent="Door" instance=ExtResource("3_6dfci")]
+position = Vector2(-32, 8)
 
 [connection signal="complete_level" from="Door" to="." method="_on_door_enter"]

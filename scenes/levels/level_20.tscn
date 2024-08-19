@@ -4,4 +4,4 @@
 
 [node name="Level20" type="Node2D"]
 script = ExtResource("1_54dis")
-spawn_position = Vector2i(17912, -108)
+spawn_position = Vector2i(15176, -2432)
