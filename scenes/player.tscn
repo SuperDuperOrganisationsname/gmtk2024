@@ -1,8 +1,8 @@
-[gd_scene load_steps=64 format=3 uid="uid://6j8yqwaj8xar"]
+[gd_scene load_steps=74 format=3 uid="uid://6j8yqwaj8xar"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cic6y"]
 [ext_resource type="Texture2D" uid="uid://cwaxhhu0hbqqc" path="res://assets/sprites/main_charakter.png" id="2_dfnnq"]
-[ext_resource type="PackedScene" path="res://scenes/throw_indicator.tscn" id="3_8pc0c"]
+[ext_resource type="PackedScene" uid="uid://dlu0hf8xor7x1" path="res://scenes/throw_indicator.tscn" id="3_8pc0c"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6vknt"]
 animation = &"attack_left"
@@ -16,6 +16,8 @@ blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_j4smk")
 blend_point_1/pos = 1.0
 blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_gsekc"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijq6c"]
 animation = &"fall_down_left"
@@ -165,9 +167,38 @@ advance_condition = &"idle"
 advance_mode = 2
 advance_condition = &"run"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3h5c1"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ie12a"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6c3jb"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kfj0w"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uvki6"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j28x8"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aqcxm"]
+advance_mode = 2
+advance_condition = &"death"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ti4b7"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace1D_ot4ue")
 states/Attack/position = Vector2(538, -64)
+states/Death/node = SubResource("AnimationNodeBlendSpace1D_gsekc")
+states/Death/position = Vector2(1045, 652.803)
 states/End/position = Vector2(1103, 88)
 states/FallDown/node = SubResource("AnimationNodeBlendSpace1D_dbpyl")
 states/FallDown/position = Vector2(900, 243)
@@ -181,8 +212,8 @@ states/JumpSquad/node = SubResource("AnimationNodeBlendSpace1D_mnmva")
 states/JumpSquad/position = Vector2(289, 253)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_h0p3o")
 states/Run/position = Vector2(894, -18)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_v3umx"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_a2w73"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_m8fcr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pd7o1"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_x0mu0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_ubtsc"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_hy3j0"), "JumpSquad", "FallUp", SubResource("AnimationNodeStateMachineTransition_kh6v3"), "FallUp", "JumpPeak", SubResource("AnimationNodeStateMachineTransition_ttbgg"), "JumpPeak", "FallDown", SubResource("AnimationNodeStateMachineTransition_ecbwc"), "Idle", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_qol8v"), "Run", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_6qfy5"), "Idle", "FallDown", SubResource("AnimationNodeStateMachineTransition_p2hwd"), "Run", "FallDown", SubResource("AnimationNodeStateMachineTransition_it1o5"), "Attack", "FallDown", SubResource("AnimationNodeStateMachineTransition_wcgtq"), "FallDown", "Idle", SubResource("AnimationNodeStateMachineTransition_yejev"), "FallDown", "Run", SubResource("AnimationNodeStateMachineTransition_b0dhl")]
-graph_offset = Vector2(86, 27.8033)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_v3umx"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_a2w73"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_m8fcr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pd7o1"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_x0mu0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_ubtsc"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_hy3j0"), "JumpSquad", "FallUp", SubResource("AnimationNodeStateMachineTransition_kh6v3"), "FallUp", "JumpPeak", SubResource("AnimationNodeStateMachineTransition_ttbgg"), "JumpPeak", "FallDown", SubResource("AnimationNodeStateMachineTransition_ecbwc"), "Idle", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_qol8v"), "Run", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_6qfy5"), "Idle", "FallDown", SubResource("AnimationNodeStateMachineTransition_p2hwd"), "Run", "FallDown", SubResource("AnimationNodeStateMachineTransition_it1o5"), "Attack", "FallDown", SubResource("AnimationNodeStateMachineTransition_wcgtq"), "FallDown", "Idle", SubResource("AnimationNodeStateMachineTransition_yejev"), "FallDown", "Run", SubResource("AnimationNodeStateMachineTransition_b0dhl"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_3h5c1"), "JumpSquad", "Death", SubResource("AnimationNodeStateMachineTransition_ie12a"), "FallUp", "Death", SubResource("AnimationNodeStateMachineTransition_6c3jb"), "JumpPeak", "Death", SubResource("AnimationNodeStateMachineTransition_kfj0w"), "FallDown", "Death", SubResource("AnimationNodeStateMachineTransition_uvki6"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_j28x8"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_aqcxm")]
+graph_offset = Vector2(196, 273.803)
 
 [sub_resource type="Animation" id="Animation_qo5fo"]
 length = 0.001
@@ -753,11 +784,57 @@ tracks/0/keys = {
 "values": [24, 25, 26, 27, 28, 29, 30, 31]
 }
 
+[sub_resource type="Animation" id="Animation_5ds7l"]
+resource_name = "death_right"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [56, 56, 57, 58, 59, 60, 61, 62, 63]
+}
+
+[sub_resource type="Animation" id="Animation_pflmx"]
+resource_name = "death_left"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [56, 56, 57, 58, 59, 60, 61, 62, 63]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d8882"]
 _data = {
 "RESET": SubResource("Animation_qo5fo"),
 "attack_left": SubResource("Animation_vcn1s"),
 "attack_right": SubResource("Animation_hdqrk"),
+"death_left": SubResource("Animation_pflmx"),
+"death_right": SubResource("Animation_5ds7l"),
 "fall_down_left": SubResource("Animation_oluuj"),
 "fall_down_right": SubResource("Animation_rqufp"),
 "fall_up_left": SubResource("Animation_a1xex"),
@@ -796,6 +873,7 @@ script = ExtResource("1_cic6y")
 tree_root = SubResource("AnimationNodeStateMachine_ti4b7")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
+parameters/conditions/death = false
 parameters/conditions/fall_down = false
 parameters/conditions/fall_up = false
 parameters/conditions/idle = false
@@ -803,6 +881,7 @@ parameters/conditions/jump = false
 parameters/conditions/jump_peak = false
 parameters/conditions/run = false
 parameters/Attack/blend_position = 0
+parameters/Death/blend_position = 0
 parameters/FallDown/blend_position = 0
 parameters/FallUp/blend_position = 0
 parameters/Idle/blend_position = -0.996667
