@@ -312,7 +312,7 @@ func draw_tilemaps():
 			left_tilemap.set_cell(coord, source, atlas)
 		elif coord.x > int_end:
 			right_tilemap.set_cell(coord, source, atlas)
-		else:
+		elif scaling.scale > 0:
 			middle_tilemap.set_cell(coord, source, atlas)
 		
 
