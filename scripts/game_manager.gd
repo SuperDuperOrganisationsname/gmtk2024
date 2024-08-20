@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var num_levels: int = 3
+@export var num_levels: int = 20
 @export var player: CharacterBody2D
 @export var current_level: int = 0
 @export var level_placeholder: Node
@@ -15,6 +15,7 @@ signal player_reset_health
 signal reset_scale
 signal signal_cur_level(level: int)
 signal num_resets_signal(resets: int)
+signal level_skipped
 
 func _ready() -> void:
 	level_placeholder.queue_free()
@@ -64,3 +65,11 @@ func _on_killzone_entered(body: Node2D) -> void:
 
 func _on_pause_menu_pause_menu_reset_level() -> void:
 	reset_level()
+
+
+func _skip_level():
+	if current_level < num_levels - 1:
+		current_level += 1
+		reset_level()
+		num_resets -= 1
+		level_skipped.emit()

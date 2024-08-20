@@ -824,7 +824,6 @@ sources/0 = SubResource("TileSetAtlasSource_q5sna")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("player", "level_placeholder")]
 script = ExtResource("1_g7thr")
-num_levels = 20
 player = NodePath("Player")
 level_placeholder = NodePath("Levels")
 
