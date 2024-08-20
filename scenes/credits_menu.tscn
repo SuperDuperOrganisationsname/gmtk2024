@@ -52,13 +52,14 @@ The following external assets were used: (The sprites were recolored)
 
 - Font: Pixel Operator by Jayvee Enaguas (HarvettFox96) (https://www.dafont.com/pixel-operator.font?l[]=10&l[]=1)
 
+- SFX created with sfxr (https://sfxr.me/)
+
 ==================Music==================
 
 Daisy by Sakura Girl | https://soundcloud.com/sakuragirl_official
 Music promoted by https://www.chosic.com/free-music/all/
 Creative Commons CC BY 3.0
-https://creativecommons.org/licenses/by/3.0/
- "
+https://creativecommons.org/licenses/by/3.0/"
 autowrap_mode = 2
 clip_text = true
 
@@ -75,5 +76,21 @@ grow_vertical = 0
 theme = ExtResource("1_i76kd")
 text = "Back to Main Menu"
 flat = true
+
+[node name="Label" type="Label" parent="ColorRect/Button"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -16.0
+offset_right = 74.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_i76kd")
+theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
+text = "Press [Esc]"
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
