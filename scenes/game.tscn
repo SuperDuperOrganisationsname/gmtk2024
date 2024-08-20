@@ -1233,6 +1233,7 @@ bus = &"SFX"
 [connection signal="player_hit" from="Player" to="Ui" method="_on_player_player_hit"]
 [connection signal="throw_talisman" from="Player" to="Scaler" method="_on_player_throw_talisman"]
 [connection signal="toggle_pause_menu" from="Player" to="Ui/PauseMenu" method="_on_player_toggle_pause_menu"]
+[connection signal="squished" from="Player/SquishCheck" to="." method="reset_level"]
 [connection signal="change_scale_type" from="Scaler" to="Ui" method="_on_scaling_tilemap_change_scale_type"]
 [connection signal="int_scale" from="Scaler" to="Ui" method="_get_int_scale"]
 [connection signal="int_size" from="Scaler" to="Ui" method="_get_int_size"]
