@@ -984,8 +984,8 @@ offset_bottom = 113.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("30_o36fs")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Drop the Talisman with [SHIFT] + [K] (Pickup with [K]
-)
+text = "Drop the Talisman with [SHIFT] + [K] (Pickup with [K])
+
 Stretch space with [L] to reveal the key
 Press [U] to undo the scaling (needed before pickup)"
 horizontal_alignment = 1
