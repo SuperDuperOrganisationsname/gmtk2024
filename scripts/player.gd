@@ -6,7 +6,7 @@ signal player_hit(cur_health: int)
 signal player_dead
 
 var death_timer: int = -1
-const DEATH_WAIT_TIMER: int = 120
+const DEATH_WAIT_TIMER: int = 30
 
 var can_throw: int = 0
 var can_move: bool = true
@@ -62,7 +62,10 @@ func _process(_delta: float) -> void:
 		can_throw -= 1
 	if death_timer > 0:
 		death_timer -= 1
-	elif cur_health == 0:
+	
+	if death_timer == 20:
+		_on_game_player_reset_health()
+	elif death_timer == 0:
 		player_dead.emit()
 		death_timer = -1
 		
@@ -228,6 +231,19 @@ func on_enemy_hit(body: Node2D) -> void:
 			death_timer = DEATH_WAIT_TIMER
 	player_hit.emit(cur_health)	
 
+func kill_player():
+	if death_timer == -1:
+		# reset player animations and play death animation	
+		animation_tree["parameters/conditions/attack"] = false 
+		animation_tree["parameters/conditions/run"] = false 
+		animation_tree["parameters/conditions/idle"] = false 
+		animation_tree["parameters/conditions/jump"] = false 
+		animation_tree["parameters/conditions/fall_up"] = false 
+		animation_tree["parameters/conditions/jump_peak"] = false 
+		animation_tree["parameters/conditions/fall_down"] = false 
+		animation_tree["parameters/conditions/death"] = true 
+		
+		death_timer = DEATH_WAIT_TIMER
 
 func _on_game_player_reset_health() -> void:
 	cur_health = max_health
