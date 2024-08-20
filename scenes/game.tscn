@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://8tdydcje4fe4"]
+[gd_scene load_steps=40 format=4 uid="uid://8tdydcje4fe4"]
 
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g7thr"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://bccx1bx262qw" path="res://scenes/levels/level_19.tscn" id="28_m44va"]
 [ext_resource type="PackedScene" uid="uid://dgvm22i5714b8" path="res://scenes/levels/level_20.tscn" id="29_pfcxv"]
 [ext_resource type="Theme" uid="uid://dks16qglyxjf6" path="res://assets/default_ui_theme.tres" id="30_o36fs"]
+[ext_resource type="AudioStream" uid="uid://bai4f4kyl03l1" path="res://assets/sounds/door_enter.wav" id="32_1robv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a0oef"]
 shader = ExtResource("2_yd48s")
@@ -1218,6 +1219,10 @@ text = "Congratulations!
 You did it! Thanks for playing!
 How was your time?"
 horizontal_alignment = 1
+
+[node name="DoorSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("32_1robv")
+bus = &"SFX"
 
 [connection signal="level_time_signal" from="." to="Ui" method="_on_game_level_time_signal"]
 [connection signal="num_resets_signal" from="." to="Ui/PauseMenu" method="_on_game_num_resets_signal"]
