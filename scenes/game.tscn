@@ -1,9 +1,11 @@
-[gd_scene load_steps=36 format=4 uid="uid://8tdydcje4fe4"]
+[gd_scene load_steps=39 format=4 uid="uid://8tdydcje4fe4"]
 
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g7thr"]
 [ext_resource type="PackedScene" uid="uid://6j8yqwaj8xar" path="res://scenes/player.tscn" id="1_voq50"]
 [ext_resource type="PackedScene" uid="uid://crtdkcfkvb8sy" path="res://scenes/pause_menu.tscn" id="2_5u4hp"]
+[ext_resource type="Texture2D" uid="uid://dm32wfmki6pti" path="res://assets/game_background.png" id="2_pcck0"]
+[ext_resource type="Shader" path="res://scripts/background.gdshader" id="2_yd48s"]
 [ext_resource type="PackedScene" uid="uid://sqya6is71pbm" path="res://scenes/squish_check.tscn" id="3_e7q4b"]
 [ext_resource type="PackedScene" uid="uid://b5gm1h3t1vcbt" path="res://scenes/scaling_tilemap.tscn" id="3_yt2vt"]
 [ext_resource type="Texture2D" uid="uid://b35r0lq84s0is" path="res://assets/sprites/tilesets/clean_tileset_red.png" id="4_1x3xs"]
@@ -30,6 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://bccx1bx262qw" path="res://scenes/levels/level_19.tscn" id="28_m44va"]
 [ext_resource type="PackedScene" uid="uid://dgvm22i5714b8" path="res://scenes/levels/level_20.tscn" id="29_pfcxv"]
 [ext_resource type="Theme" uid="uid://dks16qglyxjf6" path="res://assets/default_ui_theme.tres" id="30_o36fs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a0oef"]
+shader = ExtResource("2_yd48s")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sage3"]
 texture = ExtResource("5_lhdsm")
@@ -828,6 +833,20 @@ script = ExtResource("1_g7thr")
 player = NodePath("Player")
 level_placeholder = NodePath("Levels")
 
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="BackgroundLayer"]
+z_index = -100
+z_as_relative = false
+material = SubResource("ShaderMaterial_a0oef")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_pcck0")
+
 [node name="Ui" parent="." instance=ExtResource("1_88vku")]
 
 [node name="PauseMenu" parent="Ui" instance=ExtResource("2_5u4hp")]
@@ -965,8 +984,8 @@ offset_bottom = 113.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("30_o36fs")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Drop the Talisman with [SHIFT] + [K] (Pickup with [K])
-
+text = "Drop the Talisman with [SHIFT] + [K] (Pickup with [K]
+)
 Stretch space with [L] to reveal the key
 Press [U] to undo the scaling (needed before pickup)"
 horizontal_alignment = 1
