@@ -38,6 +38,15 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="PausedText" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_bb0cp")
+theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ContinueButton" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bb0cp")
