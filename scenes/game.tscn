@@ -826,7 +826,6 @@ sources/0 = SubResource("TileSetAtlasSource_q5sna")
 script = ExtResource("1_g7thr")
 num_levels = 20
 player = NodePath("Player")
-current_level = 16
 level_placeholder = NodePath("Levels")
 
 [node name="Ui" parent="." instance=ExtResource("1_88vku")]
@@ -929,6 +928,7 @@ shape = SubResource("WorldBoundaryShape2D_36tkx")
 
 [connection signal="player_reset_health" from="." to="Player" method="_on_game_player_reset_health"]
 [connection signal="reset_scale" from="." to="Scaler" method="reset_talisman_and_scale"]
+[connection signal="signal_cur_level" from="." to="Ui" method="_update_level"]
 [connection signal="pause_menu_open_controls" from="Ui/PauseMenu" to="Ui/ControlsOverview" method="_on_pause_menu_pause_menu_open_controls"]
 [connection signal="pause_menu_reset_level" from="Ui/PauseMenu" to="." method="_on_pause_menu_pause_menu_reset_level"]
 [connection signal="player_dead" from="Player" to="." method="reset_level"]

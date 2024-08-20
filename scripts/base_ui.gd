@@ -40,3 +40,6 @@ func _update_int_size(size: int) -> void:
 func _on_ui_change_health(i:int) -> void:
 	return
 	
+
+func _update_current_level(level: int) -> void:
+	$CurrentLevel.text = str(level)

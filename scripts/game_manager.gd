@@ -12,6 +12,7 @@ var reset_next_frame: bool = false
 
 signal player_reset_health
 signal reset_scale
+signal signal_cur_level(level: int)
 
 func _ready() -> void:
 	level_placeholder.queue_free()
@@ -33,6 +34,7 @@ func load_level(level):
 	self.add_child(instance)
 	player.position = instance.spawn_position
 	cur_level = instance
+	signal_cur_level.emit(current_level + 1)
 
 func reset_level():
 	load_level(levels[current_level])
