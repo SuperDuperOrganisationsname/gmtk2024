@@ -76,6 +76,14 @@ theme = ExtResource("1_bb0cp")
 text = "Quit"
 flat = true
 
+[node name="ResetCounter" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bb0cp")
+theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
+text = "Resets: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="ColorRect/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/SkipLevelButton" to="." method="_on_skip_level_button_pressed"]

@@ -6,12 +6,15 @@ signal skip_level
 
 var pause_menu_active = false
 
+@onready var reset_counter: Label = $ColorRect/VBoxContainer/ResetCounter
+
 func toggle_pause_menu() -> void:
 	pause_menu_active = !pause_menu_active
 	get_tree().paused = pause_menu_active
 	visible = pause_menu_active  
 
 func _ready() -> void:
+	reset_counter.text = "Resets: 0"
 	visible = pause_menu_active
 
 func _process(delta: float) -> void:
@@ -37,7 +40,7 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_game_num_resets_signal(resets: int) -> void:
-	pass # Replace with function body.
+	reset_counter.text = "Resets: " + str(resets)
 
 
 func _on_skip_level_button_pressed() -> void:
