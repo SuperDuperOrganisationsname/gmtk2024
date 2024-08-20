@@ -430,6 +430,34 @@ tile_set = SubResource("TileSet_ybwlc")
 
 [node name="ClickSound" parent="." instance=ExtResource("7_mihr2")]
 
+[node name="StartHint" type="Label" parent="."]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 594.0
+offset_right = 273.0
+offset_bottom = 617.0
+theme = ExtResource("2_bn6x1")
+theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
+text = "Press [Space]"
+
+[node name="CreditsHint" type="Label" parent="."]
+offset_left = 512.0
+offset_top = 594.0
+offset_right = 688.0
+offset_bottom = 617.0
+theme = ExtResource("2_bn6x1")
+theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
+text = "Press [J]"
+
+[node name="QuitHint" type="Label" parent="."]
+offset_left = 895.0
+offset_top = 594.0
+offset_right = 1071.0
+offset_bottom = 617.0
+theme = ExtResource("2_bn6x1")
+theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
+text = "Press [Esc]"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
