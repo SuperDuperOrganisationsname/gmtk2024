@@ -28,6 +28,8 @@ var indicator_rotation = 0
 # checks if the last frame was in the air, to detect when you land
 var last_frame_in_air = false
 
+var last_y_velo = 0
+
 @export_group("Health")
 @export var max_health: int = 3
 @export var cur_health: int = 3
@@ -43,6 +45,8 @@ var last_frame_in_air = false
 @onready var throw_indicator: StaticBody2D = $ThrowIndicator
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var input_buffer: Timer = $InputBuffer
+@onready var jump_sound: AudioStreamPlayer2D = $JumpSound
+@onready var land_sound: AudioStreamPlayer2D = $LandSound
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -53,6 +57,7 @@ func _process(_delta: float) -> void:
 	if update_anim:
 		update_animation()
 	last_frame_in_air = not is_on_floor()
+	last_y_velo = velocity.y	
 	if can_throw > 0 and can_throw < 3:
 		can_throw -= 1
 	if death_timer > 0:
@@ -86,6 +91,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and can_move:
 		input_buffer.start(jump_buffer_time)
 	if input_buffer.time_left > 0 and coyote_timer.time_left > 0:
+		jump_sound.play()	
 		coyote_timer.stop()
 		velocity.y = JUMP_VELOCITY
 		
@@ -184,6 +190,8 @@ func update_animation():
 		
 	# Landing
 	if is_on_floor() and last_frame_in_air:
+		if last_y_velo > 200:
+			land_sound.play()
 		animation_tree["parameters/conditions/fall_down"] = false
 		animation_tree["parameters/conditions/fall_up"] = false
 		animation_tree["parameters/conditions/jump_peak"] = false

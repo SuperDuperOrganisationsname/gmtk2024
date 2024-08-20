@@ -1,8 +1,10 @@
-[gd_scene load_steps=77 format=3 uid="uid://6j8yqwaj8xar"]
+[gd_scene load_steps=79 format=3 uid="uid://6j8yqwaj8xar"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cic6y"]
 [ext_resource type="Texture2D" uid="uid://cwaxhhu0hbqqc" path="res://assets/sprites/main_charakter.png" id="2_dfnnq"]
 [ext_resource type="PackedScene" uid="uid://dlu0hf8xor7x1" path="res://scenes/throw_indicator.tscn" id="3_8pc0c"]
+[ext_resource type="AudioStream" uid="uid://dexn5vkcu8k2b" path="res://assets/sounds/jump.wav" id="4_dkm7y"]
+[ext_resource type="AudioStream" uid="uid://m0csht8ph1yw" path="res://assets/sounds/land.wav" id="5_0lxc0"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6vknt"]
 animation = &"attack_left"
@@ -229,7 +231,7 @@ states/JumpSquad/position = Vector2(289, 253)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_h0p3o")
 states/Run/position = Vector2(894, -18)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_v3umx"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_a2w73"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_m8fcr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pd7o1"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_x0mu0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_ubtsc"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_hy3j0"), "JumpSquad", "FallUp", SubResource("AnimationNodeStateMachineTransition_kh6v3"), "FallUp", "JumpPeak", SubResource("AnimationNodeStateMachineTransition_ttbgg"), "JumpPeak", "FallDown", SubResource("AnimationNodeStateMachineTransition_ecbwc"), "Idle", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_qol8v"), "Run", "JumpSquad", SubResource("AnimationNodeStateMachineTransition_6qfy5"), "Idle", "FallDown", SubResource("AnimationNodeStateMachineTransition_p2hwd"), "Run", "FallDown", SubResource("AnimationNodeStateMachineTransition_it1o5"), "Attack", "FallDown", SubResource("AnimationNodeStateMachineTransition_wcgtq"), "FallDown", "Idle", SubResource("AnimationNodeStateMachineTransition_yejev"), "FallDown", "Run", SubResource("AnimationNodeStateMachineTransition_b0dhl"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_3h5c1"), "JumpSquad", "Death", SubResource("AnimationNodeStateMachineTransition_ie12a"), "FallUp", "Death", SubResource("AnimationNodeStateMachineTransition_6c3jb"), "JumpPeak", "Death", SubResource("AnimationNodeStateMachineTransition_kfj0w"), "FallDown", "Death", SubResource("AnimationNodeStateMachineTransition_uvki6"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_j28x8"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_aqcxm"), "Death", "Idle", SubResource("AnimationNodeStateMachineTransition_48unm")]
-graph_offset = Vector2(-107, 20.803)
+graph_offset = Vector2(366, -33.197)
 
 [sub_resource type="Animation" id="Animation_qo5fo"]
 length = 0.001
@@ -946,6 +948,14 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
 position = Vector2(1, -10)
 shape = SubResource("CapsuleShape2D_hmuep")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dkm7y")
+bus = &"SFX"
+
+[node name="LandSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0lxc0")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="body_entered" from="EnemyDetection" to="." method="on_enemy_hit"]
