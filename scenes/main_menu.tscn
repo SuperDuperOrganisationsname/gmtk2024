@@ -370,6 +370,23 @@ z_index = -1
 position = Vector2(32, 16)
 texture = ExtResource("1_ywpkd")
 
+[node name="StartHint" type="Label" parent="StartButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.5
+offset_top = -8.0
+offset_right = 24.5
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_bn6x1")
+theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
+theme_override_font_sizes/font_size = 8
+text = "[Space]"
+
 [node name="CreditsButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -396,6 +413,23 @@ z_index = -1
 position = Vector2(32, 16)
 texture = ExtResource("1_ywpkd")
 
+[node name="CreditsHint" type="Label" parent="CreditsButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.5
+offset_top = -8.0
+offset_right = 10.5
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_bn6x1")
+theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
+theme_override_font_sizes/font_size = 8
+text = "[J]"
+
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -421,6 +455,23 @@ z_index = -1
 position = Vector2(32, 16)
 texture = ExtResource("1_ywpkd")
 
+[node name="QuitHint" type="Label" parent="QuitButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.5
+offset_top = -8.0
+offset_right = 17.5
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_bn6x1")
+theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
+theme_override_font_sizes/font_size = 8
+text = "[Esc]"
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
 z_index = -5
@@ -429,34 +480,6 @@ tile_map_data = PackedByteArray("AAABAAAAAAACAAUAAAACAAAAAAABAAIAAAAIAAkAAAAAAAo
 tile_set = SubResource("TileSet_ybwlc")
 
 [node name="ClickSound" parent="." instance=ExtResource("7_mihr2")]
-
-[node name="StartHint" type="Label" parent="."]
-layout_mode = 0
-offset_left = 97.0
-offset_top = 594.0
-offset_right = 273.0
-offset_bottom = 617.0
-theme = ExtResource("2_bn6x1")
-theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
-text = "Press [Space]"
-
-[node name="CreditsHint" type="Label" parent="."]
-offset_left = 512.0
-offset_top = 594.0
-offset_right = 688.0
-offset_bottom = 617.0
-theme = ExtResource("2_bn6x1")
-theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
-text = "Press [J]"
-
-[node name="QuitHint" type="Label" parent="."]
-offset_left = 895.0
-offset_top = 594.0
-offset_right = 1071.0
-offset_bottom = 617.0
-theme = ExtResource("2_bn6x1")
-theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
-text = "Press [Esc]"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
