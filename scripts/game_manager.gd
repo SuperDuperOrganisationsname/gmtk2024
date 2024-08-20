@@ -22,7 +22,6 @@ signal level_time_signal(time: int)
 var start_time: int = 0
 var level_start_time: int = 0
 
-@onready var key_pickup_sound: AudioStreamPlayer = $KeyPickupSound
 @onready var door_sound: AudioStreamPlayer = $DoorSound
 
 func _ready() -> void:
