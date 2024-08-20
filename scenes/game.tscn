@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://8tdydcje4fe4"]
+[gd_scene load_steps=36 format=4 uid="uid://8tdydcje4fe4"]
 
 [ext_resource type="PackedScene" uid="uid://cgyokykjdnk07" path="res://scenes/ui.tscn" id="1_88vku"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g7thr"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dox636v6fik0h" path="res://scenes/levels/level_18.tscn" id="27_iu36c"]
 [ext_resource type="PackedScene" uid="uid://bccx1bx262qw" path="res://scenes/levels/level_19.tscn" id="28_m44va"]
 [ext_resource type="PackedScene" uid="uid://dgvm22i5714b8" path="res://scenes/levels/level_20.tscn" id="29_pfcxv"]
+[ext_resource type="Theme" uid="uid://dks16qglyxjf6" path="res://assets/default_ui_theme.tres" id="30_o36fs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sage3"]
 texture = ExtResource("5_lhdsm")
@@ -924,6 +925,280 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("WorldBoundaryShape2D_36tkx")
+
+[node name="Labels" type="Node2D" parent="."]
+position = Vector2(-452, -2550)
+
+[node name="Level1" type="Label" parent="Labels"]
+offset_left = -50.0
+offset_top = 60.0
+offset_right = 238.0
+offset_bottom = 133.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Move with [A] and [D]
+Jump with [SPACE]
+
+Go in the door with [W]"
+horizontal_alignment = 1
+
+[node name="Level2" type="Label" parent="Labels"]
+offset_left = 990.0
+offset_top = 60.0
+offset_right = 1278.0
+offset_bottom = 133.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "The Door is locked!
+
+Pickup the key
+to unlock it"
+horizontal_alignment = 1
+
+[node name="Level3" type="Label" parent="Labels"]
+offset_left = 1700.0
+offset_top = 40.0
+offset_right = 2370.0
+offset_bottom = 113.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Drop the Talisman with [SHIFT] + [K] (Pickup with [K]
+
+Stretch the space with [L] to reveal the key
+Press [U] to undo the scaling (needed before pickup)"
+horizontal_alignment = 1
+
+[node name="Level4" type="Label" parent="Labels"]
+offset_left = 2550.0
+offset_top = 40.0
+offset_right = 2936.0
+offset_bottom = 113.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Only red space will be scaled!
+
+Tip: You can change the scaling
+direction with [-]"
+horizontal_alignment = 1
+
+[node name="Level5" type="Label" parent="Labels"]
+offset_left = 3550.0
+offset_top = 40.0
+offset_right = 3838.0
+offset_bottom = 113.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Doors and Keys can
+also be hidden behind
+Walls - Reveal them"
+horizontal_alignment = 1
+
+[node name="Level6" type="Label" parent="Labels"]
+offset_left = 4100.0
+offset_top = 40.0
+offset_right = 4486.0
+offset_bottom = 113.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Shrink space with [H]
+
+Use it to remove walls 
+temporarily"
+horizontal_alignment = 1
+
+[node name="Level7" type="Label" parent="Labels"]
+offset_left = 5260.0
+offset_right = 5548.0
+offset_bottom = 73.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "The gap is too big!
+
+Throw the Talisman down
+and shrink the space
+to make the jump"
+horizontal_alignment = 1
+
+[node name="Level8" type="Label" parent="Labels"]
+offset_left = 6115.0
+offset_top = 72.0
+offset_right = 6421.0
+offset_bottom = 164.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "This key is affected by
+Gravity!
+
+Remove the platform
+to get it down!"
+horizontal_alignment = 1
+
+[node name="Level9" type="Label" parent="Labels"]
+offset_left = 6800.0
+offset_top = 60.0
+offset_right = 7106.0
+offset_bottom = 152.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Do you remember
+every trick?"
+horizontal_alignment = 1
+
+[node name="Level10" type="Label" parent="Labels"]
+offset_left = 7350.0
+offset_top = 20.0
+offset_right = 7638.0
+offset_bottom = 93.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "The key is locked away!
+
+Press the button with [J]
+and get the key on the left"
+horizontal_alignment = 1
+
+[node name="Level11" type="Label" parent="Labels"]
+offset_left = 8100.0
+offset_top = 60.0
+offset_right = 8428.0
+offset_bottom = 133.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "There are multiple
+Buttons now?"
+horizontal_alignment = 1
+
+[node name="Level12" type="Label" parent="Labels"]
+offset_left = 8975.0
+offset_top = -10.0
+offset_right = 9315.0
+offset_bottom = 82.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "You can also press a button
+using the Talisman
+
+Drop it while jumping 
+to get the key"
+horizontal_alignment = 1
+
+[node name="Level13" type="Label" parent="Labels"]
+offset_left = 9525.0
+offset_top = 80.0
+offset_right = 9813.0
+offset_bottom = 153.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Remember Scaling?
+
+Maybe it will help!"
+horizontal_alignment = 1
+
+[node name="Level14" type="Label" parent="Labels"]
+offset_left = 10030.0
+offset_top = 80.0
+offset_right = 10358.0
+offset_bottom = 153.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Oh no... not again!"
+horizontal_alignment = 1
+
+[node name="Level15" type="Label" parent="Labels"]
+offset_left = 10555.0
+offset_top = 60.0
+offset_right = 10883.0
+offset_bottom = 133.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "If only I were good
+at jumping...
+
+But where are my
+platforms?"
+horizontal_alignment = 1
+
+[node name="Level16" type="Label" parent="Labels"]
+offset_left = 11550.0
+offset_top = 80.0
+offset_right = 11878.0
+offset_bottom = 153.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "I hope you have a 
+good memory"
+horizontal_alignment = 1
+
+[node name="Level17" type="Label" parent="Labels"]
+offset_left = 12400.0
+offset_top = 65.0
+offset_right = 12728.0
+offset_bottom = 138.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "This looks easy...
+...or does it?"
+horizontal_alignment = 1
+
+[node name="Level18" type="Label" parent="Labels"]
+offset_left = 13540.0
+offset_top = 65.0
+offset_right = 13868.0
+offset_bottom = 138.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Do not worry!
+There are no keys or
+buttons this time!
+
+But where is the door?"
+horizontal_alignment = 1
+
+[node name="Level19" type="Label" parent="Labels"]
+offset_left = 14560.0
+offset_top = 65.0
+offset_right = 14888.0
+offset_bottom = 157.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Nearly done! 
+Only one door left!
+
+Do you see what is different
+to the level before?"
+horizontal_alignment = 1
+
+[node name="Level20" type="Label" parent="Labels"]
+offset_left = 15650.0
+offset_top = -100.0
+offset_right = 16026.0
+offset_bottom = -8.0
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Congratulations!
+
+You did it! Thanks for playing!
+How was your time?"
+horizontal_alignment = 1
 
 [connection signal="player_reset_health" from="." to="Player" method="_on_game_player_reset_health"]
 [connection signal="reset_scale" from="." to="Scaler" method="reset_talisman_and_scale"]

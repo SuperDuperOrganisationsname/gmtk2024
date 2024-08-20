@@ -16,6 +16,6 @@ keys = [NodePath("StaticKey"), NodePath("StaticKey2")]
 position = Vector2(-160, -24)
 
 [node name="StaticKey2" parent="Door" instance=ExtResource("3_ppeeo")]
-position = Vector2(192, -24)
+position = Vector2(192, -56)
 
 [connection signal="complete_level" from="Door" to="." method="_on_door_enter"]
