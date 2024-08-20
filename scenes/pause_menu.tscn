@@ -62,7 +62,7 @@ flat = true
 [node name="SkipLevelButton" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bb0cp")
-text = "SkipLevel"
+text = "Skip Level"
 
 [node name="ControlsButton" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
