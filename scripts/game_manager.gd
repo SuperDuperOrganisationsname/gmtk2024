@@ -18,9 +18,12 @@ signal num_resets_signal(resets: int)
 signal level_skipped
 signal total_time_signal(time: int)
 signal level_time_signal(time: int)
+signal congratulations
 
 var start_time: int = 0
 var level_start_time: int = 0
+
+var stop_time: bool = false
 
 @onready var door_sound: AudioStreamPlayer = $DoorSound
 
@@ -47,6 +50,11 @@ func load_level(level):
 	player.position = instance.spawn_position
 	cur_level = instance
 	signal_cur_level.emit(current_level + 1)
+	if current_level + 1 == num_levels:
+		congratulations.emit()
+		stop_time = true
+		start_time = Time.get_ticks_msec() - start_time
+		level_start_time = 0
 
 func reset_level():
 	player_reset_health.emit()
@@ -71,9 +79,13 @@ func _process(delta: float) -> void:
 		reset_level()
 	num_resets_signal.emit(num_resets)
 	
-	total_time_signal.emit(Time.get_ticks_msec() - start_time)
-	level_time_signal.emit(Time.get_ticks_msec() - level_start_time)
-
+	if !stop_time:
+		total_time_signal.emit(Time.get_ticks_msec() - start_time)
+		level_time_signal.emit(Time.get_ticks_msec() - level_start_time)
+	else:
+		total_time_signal.emit(start_time)
+		level_time_signal.emit(0)
+	
 func _on_killzone_entered(body: Node2D) -> void:
 	reset_next_frame = true
 

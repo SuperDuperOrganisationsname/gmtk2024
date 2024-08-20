@@ -1229,6 +1229,7 @@ process_mode = 1
 stream = ExtResource("32_1robv")
 bus = &"SFX"
 
+[connection signal="congratulations" from="." to="Player" method="congratulations"]
 [connection signal="level_skipped" from="." to="Ui/PauseMenu" method="_on_game_level_skipped"]
 [connection signal="level_time_signal" from="." to="Ui" method="_on_game_level_time_signal"]
 [connection signal="num_resets_signal" from="." to="Ui/PauseMenu" method="_on_game_num_resets_signal"]

@@ -13,7 +13,7 @@ var can_move: bool = true
 var update_anim: bool = true
 
 const SPEED = 130.0
-const JUMP_VELOCITY = -300.0
+var JUMP_VELOCITY = -300.0
 const INDICATOR_DISTANCE = 18
 const INDICATOR_ROTATION_SPEED = 0.2
 const INDICATOR_ROTATION_CENTER = Vector2(0, -17)
@@ -251,3 +251,7 @@ func _on_game_player_reset_health() -> void:
 	update_anim = true	
 	can_move = true
 	player_hit.emit(cur_health)
+
+
+func congratulations():
+	JUMP_VELOCITY = -500
