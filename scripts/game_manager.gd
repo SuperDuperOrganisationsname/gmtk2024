@@ -89,3 +89,7 @@ func _skip_level():
 		reset_level()
 		num_resets -= 1
 		level_skipped.emit()
+
+
+func _on_pause_menu_skip_level() -> void:
+	self._skip_level()

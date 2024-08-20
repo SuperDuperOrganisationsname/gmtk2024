@@ -1224,6 +1224,7 @@ horizontal_alignment = 1
 stream = ExtResource("32_1robv")
 bus = &"SFX"
 
+[connection signal="level_skipped" from="." to="Ui/PauseMenu" method="_on_game_level_skipped"]
 [connection signal="level_time_signal" from="." to="Ui" method="_on_game_level_time_signal"]
 [connection signal="num_resets_signal" from="." to="Ui/PauseMenu" method="_on_game_num_resets_signal"]
 [connection signal="player_reset_health" from="." to="Player" method="_on_game_player_reset_health"]
@@ -1232,6 +1233,7 @@ bus = &"SFX"
 [connection signal="total_time_signal" from="." to="Ui" method="_on_game_total_time_signal"]
 [connection signal="pause_menu_open_controls" from="Ui/PauseMenu" to="Ui/ControlsOverview" method="_on_pause_menu_pause_menu_open_controls"]
 [connection signal="pause_menu_reset_level" from="Ui/PauseMenu" to="." method="_on_pause_menu_pause_menu_reset_level"]
+[connection signal="skip_level" from="Ui/PauseMenu" to="." method="_on_pause_menu_skip_level"]
 [connection signal="player_dead" from="Player" to="." method="reset_level"]
 [connection signal="player_hit" from="Player" to="Ui" method="_on_player_player_hit"]
 [connection signal="throw_talisman" from="Player" to="Scaler" method="_on_player_throw_talisman"]

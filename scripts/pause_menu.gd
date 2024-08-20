@@ -2,6 +2,7 @@ extends Control
 
 signal pause_menu_reset_level
 signal pause_menu_open_controls
+signal skip_level
 
 var pause_menu_active = false
 
@@ -37,3 +38,10 @@ func _on_quit_button_pressed() -> void:
 
 func _on_game_num_resets_signal(resets: int) -> void:
 	pass # Replace with function body.
+
+
+func _on_skip_level_button_pressed() -> void:
+	skip_level.emit()
+
+func _on_game_level_skipped() -> void:
+	toggle_pause_menu()	
