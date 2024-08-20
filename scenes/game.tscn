@@ -992,7 +992,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Drop the Talisman with [SHIFT] + [K] (Pickup with [K])
 
 Stretch space with [L] to reveal the key
-Press [U] to undo the scaling (needed before pickup)"
+Press [U] to undo the scaling (needed before talisman pickup)"
 horizontal_alignment = 1
 
 [node name="Level4" type="Label" parent="Labels"]

@@ -71,8 +71,8 @@ Reset space with [U]
 Change the scaling mode with [-]
 Reset the level with [R]
 
-Open up the Pause menu with [Esc]
-Close this menu with [Q] or [Esc]
+Open up the Pause menu with [Tab]
+Close this menu with [Q] or [Tab]
 "
 autowrap_mode = 2
 clip_text = true

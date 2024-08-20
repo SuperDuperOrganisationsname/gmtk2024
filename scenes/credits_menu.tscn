@@ -91,6 +91,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_i76kd")
 theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
-text = "Press [Esc]"
+text = "Press [Tab]"
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]

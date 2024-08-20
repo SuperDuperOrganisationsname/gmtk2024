@@ -470,7 +470,7 @@ grow_vertical = 0
 theme = ExtResource("2_bn6x1")
 theme_override_colors/font_color = Color(0.716296, 0.716296, 0.716296, 1)
 theme_override_font_sizes/font_size = 8
-text = "[Esc]"
+text = "[Tab]"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
