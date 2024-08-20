@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxwkx40wu6i6j"]
+
+[ext_resource type="AudioStream" uid="uid://co8b7cdtp6uby" path="res://assets/music/daisy_sakura_girl.mp3" id="1_kdpou"]
+
+[node name="Music" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_kdpou")
+autoplay = true
+bus = &"Music"

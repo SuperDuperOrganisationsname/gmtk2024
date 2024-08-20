@@ -19,6 +19,10 @@ boot_splash/image="res://boot_splash.png"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=2500
 
+[autoload]
+
+Music="*res://scenes/music.tscn"
+
 [input]
 
 move_left={
