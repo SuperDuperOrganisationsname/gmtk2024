@@ -16,6 +16,11 @@ signal reset_scale
 signal signal_cur_level(level: int)
 signal num_resets_signal(resets: int)
 signal level_skipped
+signal total_time_signal(time: int)
+signal level_time_signal(time: int)
+
+var start_time: int = 0
+var level_start_time: int = 0
 
 func _ready() -> void:
 	level_placeholder.queue_free()
@@ -24,6 +29,8 @@ func _ready() -> void:
 		levels.append(load_level_from_file(i + 1))
 	
 	load_level(levels[current_level])
+	start_time = Time.get_ticks_msec()
+	level_start_time = Time.get_ticks_msec()
 
 func load_level_from_file(level: int) -> PackedScene:
 	var path = "res://scenes/levels/level_{num}.tscn".format({"num": str(level)})
@@ -44,6 +51,7 @@ func reset_level():
 	reset_scale.emit()
 	load_level(levels[current_level])
 	num_resets += 1
+	level_start_time = Time.get_ticks_msec()
 
 func _on_complete_level() -> void:
 	current_level += 1
@@ -58,6 +66,9 @@ func _process(delta: float) -> void:
 		reset_next_frame = false
 		reset_level()
 	num_resets_signal.emit(num_resets)
+	
+	total_time_signal.emit(Time.get_ticks_msec() - start_time)
+	level_time_signal.emit(Time.get_ticks_msec() - level_start_time)
 
 func _on_killzone_entered(body: Node2D) -> void:
 	reset_next_frame = true

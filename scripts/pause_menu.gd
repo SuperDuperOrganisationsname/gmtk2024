@@ -33,3 +33,7 @@ func _on_controls_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	toggle_pause_menu()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn") 
+
+
+func _on_game_num_resets_signal(resets: int) -> void:
+	pass # Replace with function body.

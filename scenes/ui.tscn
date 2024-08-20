@@ -132,3 +132,5 @@ horizontal_alignment = 1
 [connection signal="current_level" from="." to="BaseUi" method="_update_current_level"]
 [connection signal="int_scale" from="." to="BaseUi" method="_update_int_scale"]
 [connection signal="int_size" from="." to="BaseUi" method="_update_int_size"]
+[connection signal="level_time" from="." to="BaseUi" method="_on_ui_level_time"]
+[connection signal="total_time" from="." to="BaseUi" method="_on_ui_total_time"]

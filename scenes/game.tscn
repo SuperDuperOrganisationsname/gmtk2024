@@ -1200,9 +1200,12 @@ You did it! Thanks for playing!
 How was your time?"
 horizontal_alignment = 1
 
+[connection signal="level_time_signal" from="." to="Ui" method="_on_game_level_time_signal"]
+[connection signal="num_resets_signal" from="." to="Ui/PauseMenu" method="_on_game_num_resets_signal"]
 [connection signal="player_reset_health" from="." to="Player" method="_on_game_player_reset_health"]
 [connection signal="reset_scale" from="." to="Scaler" method="reset_talisman_and_scale"]
 [connection signal="signal_cur_level" from="." to="Ui" method="_update_level"]
+[connection signal="total_time_signal" from="." to="Ui" method="_on_game_total_time_signal"]
 [connection signal="pause_menu_open_controls" from="Ui/PauseMenu" to="Ui/ControlsOverview" method="_on_pause_menu_pause_menu_open_controls"]
 [connection signal="pause_menu_reset_level" from="Ui/PauseMenu" to="." method="_on_pause_menu_pause_menu_reset_level"]
 [connection signal="player_dead" from="Player" to="." method="reset_level"]

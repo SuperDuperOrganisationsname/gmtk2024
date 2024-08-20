@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://yxsxby4x5wjv"]
+[gd_scene load_steps=4 format=3 uid="uid://jlmarpxltofa"]
 
 [ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_c05as"]
 [ext_resource type="Texture2D" uid="uid://chhreu8i7bak0" path="res://assets/sprites/ui/speech_bubbles.png" id="1_cb7pd"]

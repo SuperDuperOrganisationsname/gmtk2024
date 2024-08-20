@@ -43,3 +43,20 @@ func _on_ui_change_health(i:int) -> void:
 
 func _update_current_level(level: int) -> void:
 	$CurrentLevel.text = str(level)
+
+
+func _on_ui_level_time(time: int) -> void:
+	var conv = milliseconds_to_time(time)
+	$LevelTimer.text = "{min}:{sec}:{mil}".format({"min": str(conv.x), "sec": str(conv.y), "mil": str(conv.z)})
+
+
+func _on_ui_total_time(time: int) -> void:
+	var conv = milliseconds_to_time(time)
+	$TotalTimer.text = "{min}:{sec}:{mil}".format({"min": str(conv.x), "sec": str(conv.y), "mil": str(conv.z)})
+
+func milliseconds_to_time(time: int) -> Vector3i:
+	var min = (time / 1000) / 60 as int
+	time -= min * 60000
+	var sec = (time / 1000) % 60 as int
+	time -= sec * 1000
+	return Vector3i(min, sec, time)
