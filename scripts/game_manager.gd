@@ -98,7 +98,7 @@ func _skip_level():
 	if current_level < num_levels - 1:
 		current_level += 1
 		reset_level()
-		num_resets -= 1
+		num_resets += 9
 		level_skipped.emit()
 
 
