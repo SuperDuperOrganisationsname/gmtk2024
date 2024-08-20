@@ -22,6 +22,7 @@ signal level_time_signal(time: int)
 var start_time: int = 0
 var level_start_time: int = 0
 
+@onready var key_pickup_sound: AudioStreamPlayer = $KeyPickupSound
 @onready var door_sound: AudioStreamPlayer = $DoorSound
 
 func _ready() -> void:
@@ -56,7 +57,8 @@ func reset_level():
 	level_start_time = Time.get_ticks_msec()
 
 func _on_complete_level() -> void:
-	door_sound.play()	
+	if !door_sound.playing:
+		door_sound.play()
 	current_level += 1
 	reset_level()
 	num_resets -= 1
