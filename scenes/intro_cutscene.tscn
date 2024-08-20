@@ -52,13 +52,16 @@ clip_text = true
 
 [node name="SpeechBubbleRight" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 655.0
+offset_left = -497.0
 offset_top = -20.0
-offset_right = 695.0
+offset_right = -457.0
 offset_bottom = 20.0
+grow_horizontal = 0
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="SpeechBubbleRight"]
