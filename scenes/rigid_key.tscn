@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxm8i35mcw3vt"]
+[gd_scene load_steps=9 format=3 uid="uid://cxm8i35mcw3vt"]
 
 [ext_resource type="Script" path="res://scripts/key.gd" id="1_26tx6"]
 [ext_resource type="Texture2D" uid="uid://cl137yslq20o5" path="res://assets/sprites/objects/key_red.png" id="2_a214k"]
+[ext_resource type="AudioStream" uid="uid://c1b161g6nvclv" path="res://assets/sounds/pickup_key.wav" id="3_lt0de"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6s33t"]
 radius = 4.0
@@ -10,6 +11,91 @@ height = 16.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4y03w"]
 radius = 4.0
 height = 16.0
+
+[sub_resource type="Animation" id="Animation_io46m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PickupSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_p71sr"]
+resource_name = "pickup_animation"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PickupSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w6cou"]
+_data = {
+"RESET": SubResource("Animation_io46m"),
+"pickup_animation": SubResource("Animation_p71sr")
+}
 
 [node name="RigidKey" type="RigidBody2D"]
 rotation = -1.5708
@@ -31,5 +117,14 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4y03w")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lt0de")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w6cou")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_player_entered"]
