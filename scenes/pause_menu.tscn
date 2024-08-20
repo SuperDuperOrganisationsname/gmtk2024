@@ -63,6 +63,7 @@ flat = true
 layout_mode = 2
 theme = ExtResource("1_bb0cp")
 text = "Skip Level"
+flat = true
 
 [node name="ControlsButton" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
