@@ -826,11 +826,13 @@ sources/0 = SubResource("TileSetAtlasSource_q5sna")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_36tkx"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("player", "level_placeholder")]
+process_mode = 3
 script = ExtResource("1_g7thr")
 player = NodePath("Player")
 level_placeholder = NodePath("Levels")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
+process_mode = 1
 layer = -1
 
 [node name="Background" type="TextureRect" parent="BackgroundLayer"]
@@ -844,6 +846,7 @@ grow_vertical = 2
 texture = ExtResource("2_pcck0")
 
 [node name="Ui" parent="." instance=ExtResource("1_88vku")]
+process_mode = 1
 
 [node name="PauseMenu" parent="Ui" instance=ExtResource("2_5u4hp")]
 z_index = 10
@@ -857,6 +860,7 @@ anchor_bottom = 0.5
 z_index = 11
 
 [node name="Player" parent="." instance=ExtResource("1_voq50")]
+process_mode = 1
 position = Vector2(-460, -2432)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -872,6 +876,7 @@ exception = NodePath("..")
 RAY_LENGTH = 5
 
 [node name="Tilemaps" type="Node2D" parent="."]
+process_mode = 1
 
 [node name="Background" type="TileMapLayer" parent="Tilemaps"]
 z_index = -1
@@ -888,11 +893,13 @@ tile_map_data = PackedByteArray("AACUAGz/AAABAAkAAACUAGv/AAABAAkAAACUAGr/AAABAAk
 tile_set = SubResource("TileSet_vh5qp")
 
 [node name="Scaler" parent="." node_paths=PackedStringArray("main_tilemap", "player", "static_tilemaps") instance=ExtResource("3_yt2vt")]
+process_mode = 1
 main_tilemap = NodePath("../Tilemaps/ScaledTilemap")
 player = NodePath("../Player")
 static_tilemaps = [NodePath("../Tilemaps/Background"), NodePath("../Tilemaps/Foreground")]
 
 [node name="Levels" type="Node2D" parent="."]
+process_mode = 1
 
 [node name="Level1" parent="Levels" instance=ExtResource("12_sgkjb")]
 
@@ -935,6 +942,7 @@ static_tilemaps = [NodePath("../Tilemaps/Background"), NodePath("../Tilemaps/For
 [node name="Level20" parent="Levels" instance=ExtResource("29_pfcxv")]
 
 [node name="Killzone" type="Area2D" parent="."]
+process_mode = 1
 position = Vector2(0, -2100)
 collision_mask = 2
 
@@ -942,6 +950,7 @@ collision_mask = 2
 shape = SubResource("WorldBoundaryShape2D_36tkx")
 
 [node name="Labels" type="Node2D" parent="."]
+process_mode = 1
 position = Vector2(-452, -2550)
 
 [node name="Level1" type="Label" parent="Labels"]
@@ -1216,6 +1225,7 @@ How was your time?"
 horizontal_alignment = 1
 
 [node name="DoorSound" type="AudioStreamPlayer" parent="."]
+process_mode = 1
 stream = ExtResource("32_1robv")
 bus = &"SFX"
 
