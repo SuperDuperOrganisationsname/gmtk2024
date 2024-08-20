@@ -118,7 +118,7 @@ collision_mask = 2
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4y03w")
 
-[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lt0de")
 bus = &"SFX"
 
