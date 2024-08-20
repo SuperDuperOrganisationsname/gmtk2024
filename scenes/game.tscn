@@ -1224,6 +1224,21 @@ You did it! Thanks for playing!
 How was your time?"
 horizontal_alignment = 1
 
+[node name="Level20b" type="Label" parent="Labels"]
+offset_left = 16200.0
+offset_top = 40.0
+offset_right = 16576.0
+offset_bottom = 132.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("30_o36fs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "By the way:
+
+The Pancakes were a lie....
+...or were they?
+..."
+horizontal_alignment = 1
+
 [node name="DoorSound" type="AudioStreamPlayer" parent="."]
 process_mode = 1
 stream = ExtResource("32_1robv")
