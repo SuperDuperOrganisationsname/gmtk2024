@@ -37,9 +37,9 @@ func load_level(level):
 	signal_cur_level.emit(current_level + 1)
 
 func reset_level():
-	load_level(levels[current_level])
 	player_reset_health.emit()
 	reset_scale.emit()
+	load_level(levels[current_level])
 
 func _on_complete_level() -> void:
 	current_level += 1
